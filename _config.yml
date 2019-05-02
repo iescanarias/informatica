@@ -4,7 +4,6 @@ defaults:
     scope:
       path: ""
       type: "pages"
-  -
     values:
       title: "Departamento de Informática"
       author: "IES Domingo Pérez Minik"
