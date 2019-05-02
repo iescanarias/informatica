@@ -3,5 +3,6 @@ locale: "es-ES"
 title: "Departamento de Informática"
 description: "IES Domingo Pérez Minik"
 show_downloads: false
+logo: "images/logo.png"
 author: 
   name: "IES Domingo Pérez Minik"
