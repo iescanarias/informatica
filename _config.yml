@@ -1,9 +1,4 @@
 theme: jekyll-theme-leap-day
-defaults:
-  -
-    scope:
-      path: ""
-    values:
-      layout: "post"
-      title: "Departamento de Informática"
-      author: "IES Domingo Pérez Minik"
+locale: "es-ES"
+title: "Departamento de Informática"
+author: "IES Domingo Pérez Minik"
