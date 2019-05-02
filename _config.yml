@@ -1,4 +1,5 @@
 theme: jekyll-theme-leap-day
 locale: "es-ES"
 title: "Departamento de Informática"
-author: "IES Domingo Pérez Minik"
+author: 
+  name: "IES Domingo Pérez Minik"
