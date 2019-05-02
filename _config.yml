@@ -2,6 +2,6 @@ theme: jekyll-theme-leap-day
 locale: "es-ES"
 title: "Departamento de Informática"
 description: "IES Domingo Pérez Minik"
-show_downloads: "false"
+show_downloads: false
 author: 
   name: "IES Domingo Pérez Minik"
