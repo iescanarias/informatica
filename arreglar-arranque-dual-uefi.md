@@ -1,6 +1,6 @@
 # Cómo arreglar el arranque dual Windows 10 + GNU/Linux en sistemas con BIOS UEFI
 
-En ocasiones, en equipos nuevos con BIOS UEFI, tras instalar un sistema Windows 10 seguido por un sistema GNU/Linux en el mismo equipo (arranque dual), no aparece el menú del gestor de arranque GRUB que permite elegir el sistema que queremos arrancar, y directamente inicia Windows.
+En ocasiones, en equipos nuevos con BIOS UEFI, tras instalar en un mismo equipo un sistema Windows 10 junto con un sistema GNU/Linux (arranque dual), no aparece el menú del gestor de arranque GRUB que permite elegir el sistema que queremos arrancar, y directamente inicia Windows.
 
 Para resolver este problema, debemos iniciar Windows y seguir los siguientes pasos:
 
