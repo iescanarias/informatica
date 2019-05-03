@@ -8,9 +8,9 @@ Para resolver este problema, debemos iniciar Windows y seguir los siguientes pas
 
 2. Ejecutar el comando:
 
-  ```
-  bcdedit /set {bootmgr} path \EFI\ubuntu\grubx64.efi
-  ```
+```
+bcdedit /set {bootmgr} path \EFI\ubuntu\grubx64.efi
+```
 
 3. Reiniciar el equipo.
 
