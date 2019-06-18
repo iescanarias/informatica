@@ -1,7 +1,8 @@
 Write-Host @"
-Script de configuración automática de Windows 10
 
-Departamento de Informática del IES Domingo Pérez Minik
+Windows automatic configuration script
+Computer Science Department (IES Domingo Pérez Minik)
+
 "@
 
 # Load functions from library
@@ -10,23 +11,20 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://raw
 # Check if is running as administrator
 If (Test-RunningAsAdministrator) {
 
-    # instalación de paquetes
+    # Packages installation
     Install-Packages
 
-    # cambiar perfiles a la unidad D
-    Write-Output "Changing profiles location in Windows Registry..."
+    # Change user profiles location to a secondary disk drive if it's possible
+    # https://www.nextofwindows.com/how-to-change-user-profile-default-location-in-windows-7
+    Change-ProfilesLocation
 
-    # crear los perfiles de los usuarios
+    # Create new users
     Write-Output "Creating users..."
-    Write-Output "+ Alumno user created"
-    Write-Output "+ Profesor user created"
+    Create-User "Profesor", "roseforp"
+    Create-User "Alumno", "onmula"
 
-    # automatizar los marcadores de google y firefox
-    # C:\Users\alumno\AppData\Local\Google\Chrome\User Data\Default
-    Write-Output "Creating browser markers..."
-
-    # programar el apagado del sistema a las 15:00 todos los dÃ­as
-    Write-Output "Programming system shutdown everyday at 3pm..."
+    # Schedule a task to shutdown computer everyday at 3pm
+    Schedule-Shutdown
 
     # desinstalar onedrive
     Uninstall-OneDrive

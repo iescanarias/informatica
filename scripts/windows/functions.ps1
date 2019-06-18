@@ -108,3 +108,73 @@ Function Install-Packages() {
 Function Pause() {
     cmd /c pause | Out-Null
 }
+
+# ----------------------------------
+# Registry related functions
+# ----------------------------------
+
+Function Find-SecondaryDrive() {
+    
+    # get removible drives excluding system volume
+    $drives = Get-WmiObject Win32_Volume -Filter ("DriveType={0}" -f [int][System.io.Drivetype]::Fixed) `
+                | Where-Object { $_.DriveLetter -ne $env:SystemDrive -and $_.SystemVolume -eq $false } `
+                | Select-Object DriveLetter
+
+    If (($drives | Measure-Object).Count -gt 0) {
+        return $drives[0].DriveLetter
+    }
+
+    return $null
+
+}
+
+Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
+
+    Write-Output "Changing profiles location in Windows Registry..."
+
+    If  ($location -eq $null) {
+        Write-Host -ForegroundColor Yellow "There is no secondary disk drive to store user profiles"
+        Return
+    }
+
+    $path = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
+
+    Set-ItemProperty -Path $path -Name "ProfilesDirectory" -Value "$location\Users"
+    Set-ItemProperty -Path $path -Name "Default" -Value "$location\Users\Default"
+    Set-ItemProperty -Path $path -Name "Public" -Value "$location\Users\Public"
+
+    Write-Output "Profiles drive changed to $location. New profiles will be stored in $location\Users"
+
+}
+
+# ----------------------------------
+# Local users related functions
+# ----------------------------------
+
+Function Create-User($username, $password) {
+
+    Write-Output "Creating user $username ..."
+
+    If (Get-LocalUser -Name $username -ErrorAction SilentlyContinue) {
+        Write-Host -ForegroundColor Yellow "User $username already exists."
+        Return
+    }
+
+    New-LocalUser `        -Name $username `        -Password (ConvertTo-SecureString -AsPlainText $password) `        -AccountNeverExpires `        -PasswordNeverExpires `        -UserMayNotChangePassword
+
+    Write-Host "User $username created"
+
+}
+
+# ----------------------------------
+# Task scheduling related functions
+# ----------------------------------
+
+Function Schedule-Shutdown() {
+    Write-Output "Scheduling system shutdown everyday at 3pm..."
+
+    $action = New-ScheduledTaskAction -Execute "shutdown" -Argument "/s /f /t 0"
+    $trigger = New-ScheduledTaskTrigger -Daily -At "15:00:00"
+    Register-ScheduledTask -TaskName "Shutdown computer" -Action $action -Trigger $trigger
+
+}
