@@ -35,7 +35,6 @@ If (Test-RunningAsAdministrator) {
 
 } Else {
 
-    Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)
-    Exit 1
+    Write-Error "Must be run as" (Get-AdminUsername)
 
  }
