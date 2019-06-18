@@ -1,0 +1,1 @@
+﻿Write-Output "Creating browser markers..."

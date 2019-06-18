@@ -1,5 +1,8 @@
 # https://lifehacker.com/how-to-completely-uninstall-onedrive-in-windows-10-1725363532
 
+Write-Output "Uninstalling OneDrive..."
+exit 1
+
 If (-Not (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -Match "S-1-5-32-544")) {
     Write-Host -ForegroundColor Red "Debe ejecutar el script como Administrador"
     Exit 1
