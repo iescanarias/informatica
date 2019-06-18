@@ -1,0 +1,16 @@
+7zip
+adobereader
+googlechrome
+firefox
+putty
+git
+github-desktop
+adoptopenjdk 
+eclipse
+filezilla
+vscode
+atom
+notepadplusplus
+virtualbox
+vmware-workstation-player
+libreoffice-fresh 
