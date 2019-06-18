@@ -39,7 +39,7 @@ function Install-Choco() {
 # Install a package with Chocolatey
 function Install-Package([string]$package) {
     Write-Host -NoNewline "Installing $package ... "
-    choco install -y $package | Out-Null
+    choco install --ignore-checksum -y $package | Out-Null
     If ($LASTEXITCODE -eq 0) {
         Write-Host "[Ok]"
     } else {
