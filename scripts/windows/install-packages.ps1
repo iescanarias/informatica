@@ -1,4 +1,4 @@
-﻿# Instalación automática de paquetes
+# Instalación automática de paquetes
 
 # ------------------------------------------
 # Funciones
@@ -42,10 +42,7 @@ function Install-Package([string]$package) {
 function Get-PackagesList {
 
     # Obtiene la lista de paquetes a instalar desde una URL (PRODUCCION)
-    #return ((New-Object System.Net.WebClient).DownloadString('url al fichero de paquetes')).Split("`n")
-
-    # Obtiene la lista de paquetes desde un fichero local (DESARROLLO)
-    return Get-Content .\w10-packages.txt
+    return ((New-Object System.Net.WebClient).DownloadString('url al fichero de paquetes')).Split("`n")
 
 }
 
