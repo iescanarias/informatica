@@ -55,7 +55,6 @@ function Install-Package([string]$package) {
 Function Uninstall-OneDrive() {
 
     Write-Output "Uninstalling OneDrive..."
-    Return
  
     # Detener el proceso de OneDrive
     Write-Host "Stopping OneDrive process ..."
@@ -80,7 +79,6 @@ Function Uninstall-OneDrive() {
 Function Install-Packages() {
 
     Write-Output "Installing packages ..."
-    Return
 
     # Instalación del gestor de paquetes Chocolatey
     If (-Not (Test-ChocoInstalled)) {
