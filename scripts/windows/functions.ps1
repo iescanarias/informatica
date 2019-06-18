@@ -56,19 +56,24 @@ Function Uninstall-OneDrive() {
 
     Write-Output "Uninstalling OneDrive..."
  
-    # Detener el proceso de OneDrive
-    Write-Host "Stopping OneDrive process ..."
-    Stop-Process -Force -Name OneDrive
+    # check if onedrive is running
+    If ((Get-Process -ErrorAction SilentlyContinue OneDrive | Measure-Object).Count -ge 1) {
 
-    # Ejecuta el desinstalador de OneDrive para la aquitectura correspondiente
-    Write-Host "Uninstalling OneDrive ..."
-    If ([System.Environment]::Is64BitOperatingSystem) {
-        &"$env:SystemRoot\SysWOW64\OneDriveSetup.exe" /uninstall
-    } else {
-        &"$env:SystemRoot\System32\OneDriveSetup.exe" /uninstall
+        # stopping onedrive process
+        Write-Host "Stopping OneDrive process ..."
+        Stop-Process -Force -Name OneDrive
+
+        # run onedrive uninstaller
+        Write-Host "Uninstalling OneDrive ..."
+        If ([System.Environment]::Is64BitOperatingSystem) {
+            &"$env:SystemRoot\SysWOW64\OneDriveSetup.exe" /uninstall
+        } else {
+            &"$env:SystemRoot\System32\OneDriveSetup.exe" /uninstall
+        }
+
+        Write-Host "Process completed"
+
     }
-
-    Write-Host "Process completed"
 
  }
 
