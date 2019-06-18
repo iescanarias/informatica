@@ -9,17 +9,8 @@ Function Get-AdminUsername() {
 }
 
 # Check if current user has admin privileges
-Function Test-UserIsMemberOfAdminsGroup() {
-    return (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -Match "S-1-5-32-544")
-}
-
-# Stop script execution if is not running with admin privileges
 Function Test-RunningAsAdministrator() {
-    If (-Not (Test-UserIsMemberOfAdminsGroup)) {
-        Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)
-        Pause
-        exit 1
-    }
+    return (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -Match "S-1-5-32-544")
 }
 
 # ----------------------------------
