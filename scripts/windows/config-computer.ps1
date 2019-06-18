@@ -11,8 +11,7 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://raw
 If (Test-RunningAsAdministrator) {
 
     # instalación de paquetes
-    #Install-Packages
-    Write-Output "Installing packages..."
+    Install-Packages
 
     # cambiar perfiles a la unidad D
     Write-Output "Changing profiles location in Windows Registry..."
@@ -30,8 +29,7 @@ If (Test-RunningAsAdministrator) {
     Write-Output "Programming system shutdown everyday at 3pm..."
 
     # desinstalar onedrive
-    #Uninstall-OneDrive
-    Write-Output "Uninstalling OneDrive..."
+    Uninstall-OneDrive
 
 } Else {
 
