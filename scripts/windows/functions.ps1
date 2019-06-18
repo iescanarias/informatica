@@ -17,6 +17,7 @@ Function Test-UserIsMemberOfAdminsGroup() {
 Function Test-RunningAsAdministrator() {
     If (-Not (Test-UserIsMemberOfAdminsGroup)) {
         Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)
+        Pause
         exit 1
     }
 }
@@ -99,4 +100,12 @@ Function Install-Packages() {
         Install-Package $_
     }
 
+}
+
+# ----------------------------------
+# Console related functions
+# ----------------------------------
+
+Function Pause() {
+    cmd /c pause | Out-Null
 }
