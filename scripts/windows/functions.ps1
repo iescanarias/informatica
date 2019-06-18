@@ -76,6 +76,10 @@ Function Uninstall-OneDrive() {
 # Software installation related functions
 # ----------------------------------
 
+Function Get-PackagesList() {
+    return (((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/windows/packages.txt"))).Split("`n")
+}
+
 Function Install-Packages() {
 
     Write-Output "Installing packages ..."
