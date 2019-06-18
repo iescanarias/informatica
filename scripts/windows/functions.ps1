@@ -17,7 +17,7 @@ Function Test-UserIsMemberOfAdminsGroup() {
 Function Test-RunningAsAdministrator() {
     If (-Not (Test-UserIsMemberOfAdminsGroup)) {
         Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)
-        Exit 1
+        exit 1
     }
 }
 
@@ -39,7 +39,7 @@ function Test-ChocoInstalled() {
 }
 
 # Install Chocolatey
-function Install-Choco([string]$package) {
+function Install-Choco() {
     Write-Host "Installing Chocolatey..."
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
@@ -53,4 +53,50 @@ function Install-Package([string]$package) {
     } else {
         Write-Host "[Error]"
     }
+}
+
+# ----------------------------------
+# OneDrive related functions
+# ----------------------------------
+
+# https://lifehacker.com/how-to-completely-uninstall-onedrive-in-windows-10-1725363532
+Function Uninstall-OneDrive() {
+
+    Write-Output "Uninstalling OneDrive..."
+ 
+    # Detener el proceso de OneDrive
+    Write-Host "Stopping OneDrive process ..."
+    Stop-Process -Force -Name OneDrive
+
+    # Ejecuta el desinstalador de OneDrive para la aquitectura correspondiente
+    Write-Host "Uninstalling OneDrive ..."
+    If ([System.Environment]::Is64BitOperatingSystem) {
+        &"$env:SystemRoot\SysWOW64\OneDriveSetup.exe" /uninstall
+    } else {
+        &"$env:SystemRoot\System32\OneDriveSetup.exe" /uninstall
+    }
+
+    Write-Host "Process completed"
+
+ }
+
+# ----------------------------------
+# Software installation related functions
+# ----------------------------------
+
+Function Install-Packages() {
+
+    Write-Output "Installing packages ..."
+    exit 0
+
+    # Instalación del gestor de paquetes Chocolatey
+    If (-Not (Test-ChocoInstalled)) {
+        Install-Choco
+    }
+
+    # Instalación de paquetes
+    Get-PackagesList | ForEach-Object { 
+        Install-Package $_
+    }
+
 }

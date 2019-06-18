@@ -1,1 +1,0 @@
-﻿Write-Output "Programming system shutdown everyday at 3pm..."
