@@ -20,8 +20,8 @@ If (Test-RunningAsAdministrator) {
 
     # Create new users
     Write-Output "Creating users..."
-    Create-User "Profesor", "roseforp"
-    Create-User "Alumno", "onmula"
+    Create-User -username "Profesor" -password "roseforp"
+    Create-User -username "Alumno" -password "onmula"
 
     # Schedule a task to shutdown computer everyday at 3pm
     Schedule-Shutdown
