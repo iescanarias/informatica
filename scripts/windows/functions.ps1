@@ -138,7 +138,7 @@ Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
 
     Write-Host "Changing profiles location to $location in Windows Registry..."
 
-    If  ($location -eq $null) {
+    If  ($location -eq $null -or $location.Length -eq 0) {
         Write-Host -ForegroundColor Yellow "There is no secondary disk drive to store user profiles"
         Return
     }
