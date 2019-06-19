@@ -54,7 +54,7 @@ function Install-Package([string]$package) {
 # https://lifehacker.com/how-to-completely-uninstall-onedrive-in-windows-10-1725363532
 Function Uninstall-OneDrive() {
 
-    Write-Output "Uninstalling OneDrive..."
+    Write-Host "Uninstalling OneDrive..."
  
     # check if onedrive is running
     If ((Get-Process -ErrorAction SilentlyContinue OneDrive | Measure-Object).Count -ge 1) {
@@ -73,6 +73,10 @@ Function Uninstall-OneDrive() {
 
         Write-Host "Process completed"
 
+    } else {
+
+        Write-Host -ForegroundColor Yellow "OneDrive is already uninstalled"
+
     }
 
  }
@@ -87,7 +91,7 @@ Function Get-PackagesList() {
 
 Function Install-Packages() {
 
-    Write-Output "Installing packages ..."
+    Write-Host "Installing packages ..."
 
     # Instalación del gestor de paquetes Chocolatey
     If (-Not (Test-ChocoInstalled)) {
@@ -120,6 +124,8 @@ Function Find-SecondaryDrive() {
                 | Where-Object { $_.DriveLetter -ne $env:SystemDrive -and $_.SystemVolume -eq $false } `
                 | Select-Object DriveLetter
 
+    $drives
+
     If (($drives | Measure-Object).Count -gt 0) {
         return $drives[0].DriveLetter
     }
@@ -130,7 +136,7 @@ Function Find-SecondaryDrive() {
 
 Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
 
-    Write-Output "Changing profiles location in Windows Registry..."
+    Write-Host "Changing profiles location to $location in Windows Registry..."
 
     If  ($location -eq $null) {
         Write-Host -ForegroundColor Yellow "There is no secondary disk drive to store user profiles"
@@ -143,7 +149,7 @@ Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
     Set-ItemProperty -Path $path -Name "Default" -Value "$location\Users\Default"
     Set-ItemProperty -Path $path -Name "Public" -Value "$location\Users\Public"
 
-    Write-Output "Profiles drive changed to $location. New profiles will be stored in $location\Users"
+    Write-Host "Profiles location changed to $location. New profiles will be stored in $location\Users"
 
 }
 
@@ -153,17 +159,19 @@ Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
 
 Function Create-User($username, $password) {
 
-    Write-Output "Creating user $username ..."
+    Write-Host "Creating user $username ..."
 
     If (Get-LocalUser -Name $username -ErrorAction SilentlyContinue) {
+       
         Write-Host -ForegroundColor Yellow "User $username already exists."
-        Return
+
+    } else {
+
+        New-LocalUser `            -Name $username `            -Password (ConvertTo-SecureString -Force -AsPlainText $password) `            -AccountNeverExpires `            -PasswordNeverExpires `            -UserMayNotChangePassword | Out-Null
+
+        Write-Host "User $username created successfully"
+
     }
-
-    New-LocalUser `        -Name $username `        -Password (ConvertTo-SecureString -Force -AsPlainText $password) `        -AccountNeverExpires `        -PasswordNeverExpires `        -UserMayNotChangePassword
-
-    Write-Host "User $username created"
-
 }
 
 # ----------------------------------
@@ -173,8 +181,16 @@ Function Create-User($username, $password) {
 Function Schedule-Shutdown() {
     Write-Output "Scheduling system shutdown everyday at 3pm..."
 
-    $action = New-ScheduledTaskAction -Execute "shutdown" -Argument "/s /f /t 0"
-    $trigger = New-ScheduledTaskTrigger -Daily -At "15:00:00"
-    Register-ScheduledTask -TaskName "Shutdown computer" -Action $action -Trigger $trigger
+    $taskName = "Shutdown computer"
 
+    if (Get-ScheduledTask -TaskName $taskName) {
+        
+        Write-Host -ForegroundColor Yellow "Scheduled task $taskName already exists"
+
+    } else { 
+
+        $action = New-ScheduledTaskAction -Execute "shutdown" -Argument "/s /f /t 0"
+        $trigger = New-ScheduledTaskTrigger -Daily -At "15:00:00"
+        Register-ScheduledTask -Description "Power off computer everyday at 3pm" -TaskName $taskName -Action $action -Trigger $trigger
+    }
 }
