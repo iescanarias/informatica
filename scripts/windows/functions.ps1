@@ -160,7 +160,7 @@ Function Create-User($username, $password) {
         Return
     }
 
-    New-LocalUser `        -Name $username `        -Password (ConvertTo-SecureString -AsPlainText $password) `        -AccountNeverExpires `        -PasswordNeverExpires `        -UserMayNotChangePassword
+    New-LocalUser `        -Name $username `        -Password (ConvertTo-SecureString -Force -AsPlainText $password) `        -AccountNeverExpires `        -PasswordNeverExpires `        -UserMayNotChangePassword
 
     Write-Host "User $username created"
 
