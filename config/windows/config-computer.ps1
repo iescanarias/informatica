@@ -1,7 +1,7 @@
 Write-Host @"
 
-Windows automatic configuration script
-Computer Science Department (IES Domingo Pérez Minik)
+Script de configuración automática de Windows
+Departamento de Informática del IES Domingo Pérez Minik
 
 "@
 
@@ -20,8 +20,8 @@ If (Test-RunningAsAdministrator) {
 
     # Create new users
     Write-Output "Creating users..."
-    Create-User -username "Profesor" -password "roseforp"
-    Create-User -username "Alumno" -password "onmula"
+    Create-User -username "Profesor" -password "roseforp" -group Administradores
+    Create-User -username "Alumno" -password "onmula" -group Usuarios
 
     # Schedule a task to shutdown computer everyday at 3pm
     Schedule-Shutdown

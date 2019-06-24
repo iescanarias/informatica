@@ -3,9 +3,24 @@
 # Users/groups related functions
 # ----------------------------------
 
+# Get user name by SID
+Function Get-UserBySID($sid) {
+    return (Get-LocalUser | Where-Object SID -Match $sid).Name
+}
+
+# Get group name by SID
+Function Get-GroupBySID($sid) {
+    return (Get-LocalGroup | Where-Object SID -Match $sid).Name
+}
+
 # Get system administrator's username
 Function Get-AdminUsername() {
-    return (Get-LocalUser | Where-Object SID -Match "S-1-5-21.*-500").Name
+    return (Get-UserBySID "S-1-5-21.*-500")
+}
+
+# Get administrators' group name
+Function Get-AdminGroupname() {
+    return (Get-GroupBySID "S-1-5-32-544")
 }
 
 # Check if current user has admin privileges
@@ -52,7 +67,7 @@ function Install-Package([string]$package) {
 # ----------------------------------
 
 # https://lifehacker.com/how-to-completely-uninstall-onedrive-in-windows-10-1725363532
-Function Uninstall-OneDrive() {
+function Uninstall-OneDrive() {
 
     Write-Host "Uninstalling OneDrive..."
  
@@ -106,14 +121,6 @@ Function Install-Packages() {
 }
 
 # ----------------------------------
-# Console related functions
-# ----------------------------------
-
-Function Pause() {
-    cmd /c pause | Out-Null
-}
-
-# ----------------------------------
 # Registry related functions
 # ----------------------------------
 
@@ -157,7 +164,7 @@ Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
 # Local users related functions
 # ----------------------------------
 
-Function Create-User($username, $password) {
+Function Create-User($username, $password, $group) {
 
     Write-Host "Creating user $username ..."
 
@@ -168,6 +175,8 @@ Function Create-User($username, $password) {
     } else {
 
         New-LocalUser `            -Name $username `            -Password (ConvertTo-SecureString -Force -AsPlainText $password) `            -AccountNeverExpires `            -PasswordNeverExpires `            -UserMayNotChangePassword | Out-Null
+
+        Add-LocalGroupMember -Group $group -Member $username
 
         Write-Host "User $username created successfully"
 
