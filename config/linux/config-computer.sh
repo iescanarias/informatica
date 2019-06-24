@@ -1,7 +1,7 @@
-ÔªøWrite-Host @"
+Write-Host @"
 
-Script de configuraci√≥n autom√°tica de Windows
-Departamento de Inform√°tica del IES Domingo P√©rez Minik
+Script de configuraciÛn autom·tica de Windows
+Departamento de Inform·tica del IES Domingo PÈrez Minik
 
 "@
 

@@ -1,4 +1,4 @@
-7zip
+﻿7zip
 adobereader
 googlechrome
 firefox

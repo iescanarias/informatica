@@ -1,4 +1,4 @@
-# Configuración de equipos con Windows
+﻿# Configuración de equipos con Windows
 
 Para configurar los equipos con Windows instalado ejecutamos un script que hace lo siguiente:
 
