@@ -11,4 +11,6 @@
 ## Sistemas operativos
 
 - [Cómo arreglar el arranque dual Windows 10 + GNU/Linux en sistemas con BIOS UEFI](arreglar-arranque-dual-uefi)
+- [Cómo actualizar Windows desde MEDUSA](actualizar-windows)
+- [Configurar un servidor proxy en Windows](configurar-proxy-windows)
 

@@ -1,4 +1,4 @@
-# Actualizar Windows
+# Cómo actualizar Windows desde MEDUSA
 
 Para poder actualizar los sistemas Windows desde la red del instituto es necesario configurar un servidor proxy antes de lanzar las actualizaciones.
 
@@ -10,7 +10,7 @@ A continuación se explica el proceso:
 
    - Botón de Inicio > Configuración > Actualización y seguridad > Windows Update
 
-   ![Windows Update](images/actualizar-windows/image01.png)
+   ![Windows Update](images/actualizar-windows-medusa/image01.png)
 
 3. Pulsamos el botón "Buscar actualizaciones".
 
