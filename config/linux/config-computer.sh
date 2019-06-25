@@ -3,7 +3,7 @@
 echo -e "\nScript de configuración automática de GNU/Linux\nDepartamento de Informática del IES Domingo Pérez Minik\n"
 
 # Load functions from library
-wget -q0- https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/linux/functions.sh | .
+wget -qO- https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/linux/functions.sh | source
 
 # Check if is running as administrator
 if isRunningAsRoot
