@@ -17,5 +17,5 @@ Para configurar los equipos con Debian instalado ejecutamos un script que hace l
 Ejecutar el siguiente comando desde la BASH:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/linux/config-computer.sh | sudo bash
+wget -qO- https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux/config-computer.sh | sudo bash
 ```
