@@ -1,0 +1,13 @@
+adobereader
+googlechrome
+firefox
+github-desktop
+adoptopenjdk 
+eclipse
+filezilla
+vscode
+atom
+notepadplusplus
+virtualbox
+vmware-workstation-player
+libreoffice-fresh 

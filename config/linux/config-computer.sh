@@ -1,36 +1,27 @@
-Write-Host @"
+#!/bin/bash
 
-Script de configuraciÛn autom·tica de Windows
-Departamento de Inform·tica del IES Domingo PÈrez Minik
-
-"@
+echo -e "\nScript de configuraci√≥n autom√°tica de GNU/Linux\nDepartamento de Inform√°tica del IES Domingo P√©rez Minik\n"
 
 # Load functions from library
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/windows/functions.ps1"))
+wget -q0- https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/linux/functions.sh | .
 
 # Check if is running as administrator
-If (Test-RunningAsAdministrator) {
+if isRunningAsRoot
+then
 
     # Packages installation
-    Install-Packages
-
-    # Change user profiles location to a secondary disk drive if it's possible
-    # https://www.nextofwindows.com/how-to-change-user-profile-default-location-in-windows-7
-    Change-ProfilesLocation
+    installPackages
 
     # Create new users
-    Write-Output "Creating users..."
-    Create-User -username "Profesor" -password "roseforp" -group Administradores
-    Create-User -username "Alumno" -password "onmula" -group Usuarios
+    echo "Creating users..."
+    createUser "profesor" "roseforp" true
+    createUser "alumno" "onmula" false
 
     # Schedule a task to shutdown computer everyday at 3pm
-    Schedule-Shutdown
+    scheduleShutdown
 
-    # desinstalar onedrive
-    Uninstall-OneDrive
+else
 
-} Else {
+    echo "Must be run as root"
 
-    Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)
-
- }
+fi
