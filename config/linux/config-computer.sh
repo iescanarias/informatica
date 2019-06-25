@@ -41,7 +41,7 @@ function installFromRepos() {
 	do
 		if [ ! -z "$package" ]
 		then
-			"Installing $package package..."
+			echo "Installing $package package..."
 			apt install -y $package
 		fi
 	done
