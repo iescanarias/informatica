@@ -83,14 +83,6 @@ function installPackages() {
 	addRepos
 	installFromRepos
 	installFromUrls
-
-        # install atom 
-        installFromUrl "https://github.com/atom/atom/releases/download/v1.38.2/atom-amd64.deb"
-
-        # install visual studio code
-        installFromUrl "https://az764295.vo.msecnd.net/stable/c7d83e57cd18f18026a8162d042843bda1bcf21f/code_1.35.1-1560350270_amd64.deb"
-
-
 }
 
 # create new user
@@ -114,6 +106,7 @@ function createUser() {
 # schedule a task to shutdown computer everyday at 3pm
 function scheduleShutdown() {
         echo "Schedule computer shutdown everyday at 3pm..."
+	echo "0 15 * * * root /sbin/shutdown -h now" > /etc/cron.d/shutdown
 }
 
 # Packages installation

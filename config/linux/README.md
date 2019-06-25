@@ -2,7 +2,9 @@
 
 Para configurar los equipos con Debian instalado ejecutamos un script que hace lo siguiente:
 
-1. Instala el software de la siguiente [lista](packages.txt).
+1. Instala el software de la siguiente [lista](packages.txt) de paquetes.
+
+2. Instala el software de la siguiente [lista](urls.txt) de URLs.
 
 2. Crear los perfiles de los usuarios: `Profesor` y `Alumno`.
 
