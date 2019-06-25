@@ -6,6 +6,7 @@ echo -e "\nScript de configuración automática de GNU/Linux\nDepartamento de In
 [ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
 
 packagesFileUrl=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux/packages.txt
+urlsFileUrl=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux/urls.txt
 
 # add apt key
 function addAptKey() {
@@ -46,6 +47,20 @@ function installFromRepos() {
 	done
 }
 
+# Install from URLs
+function installFromUrls() {
+        echo "Installing packages from urls..."
+        for url in $(wget -qO- $urlsFileUrl)
+        do
+                if [ ! -z "$url" ]
+                then
+                        "Installing $url package..."
+			installFromUrl $url
+                fi
+        done
+}
+
+
 # add apt repository
 function addRepos() {
 
@@ -57,13 +72,8 @@ function addRepos() {
 	# add repos
 	addAptRepo "google-chrome" "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" 
 
-	installFromRepos
-
-	# install atom 
-	installFromUrl "https://github.com/atom/atom/releases/download/v1.38.2/atom-amd64.deb"
-
-	# install visual studio code
-	installFromUrl "https://az764295.vo.msecnd.net/stable/c7d83e57cd18f18026a8162d042843bda1bcf21f/code_1.35.1-1560350270_amd64.deb"
+	# update database packages list
+	apt update
 
 }
 
@@ -71,6 +81,14 @@ function addRepos() {
 function installPackages() {
 	echo "Installing packages..."
 	addRepos
+	installFromRepos
+	installFromUrls
+
+        # install atom 
+        installFromUrl "https://github.com/atom/atom/releases/download/v1.38.2/atom-amd64.deb"
+
+        # install visual studio code
+        installFromUrl "https://az764295.vo.msecnd.net/stable/c7d83e57cd18f18026a8162d042843bda1bcf21f/code_1.35.1-1560350270_amd64.deb"
 
 
 }
