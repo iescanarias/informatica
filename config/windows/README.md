@@ -12,7 +12,7 @@ Para configurar los equipos con Windows instalado ejecutamos un script que hace 
 
 4. Configura los marcadores por defecto de los navegadores instalados en el sistema.
 
-5. Programa el apagado del sistema a las 15:00 de lunes a viernes (al terminar las clases).
+5. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
 
 6. Desinstala OneDrive.
 
@@ -28,11 +28,11 @@ Ejecutar el siguiente comando como `Administrador` desde:
 ### Símbolo del sistema (CMD):
 
 ```
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/windows/config-computer.ps1'))"
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iesdpm/informatica/master/config/windows/config-computer.ps1'))"
 ```
 
 ### PowerShell (PS):
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iesdpm/informatica/master/scripts/windows/config-computer.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iesdpm/informatica/master/config/windows/config-computer.ps1'))
 ```

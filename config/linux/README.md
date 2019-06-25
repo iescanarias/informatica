@@ -1,4 +1,4 @@
-﻿# Configuración de equipos con GNU/Linux (Debian)
+﻿# Configuración de equipos con GNU/Linux (Ubuntu)
 
 Para configurar los equipos con Debian instalado ejecutamos un script que hace lo siguiente:
 
@@ -8,11 +8,11 @@ Para configurar los equipos con Debian instalado ejecutamos un script que hace l
 
 2. Crear los perfiles de los usuarios: `Profesor` y `Alumno`.
 
-3. Programa el apagado del sistema a las 15:00 de lunes a viernes (al terminar las clases).
+3. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
 
 ## Requisitos
 
-* LinuxMint 19.1
+* Distribución basada en Ubuntu
 
 ## Ejecución del script
 
