@@ -33,6 +33,9 @@ If (Test-RunningAsAdministrator) {
     Rename-Computer -NewName "INFORMATICA" -Force
     Add-Computer -WorkgroupName "MINIK" -Force
 
+    # Set timezone
+    tzutil /s "GMT Standard Time"
+
 } Else {
 
     Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)
