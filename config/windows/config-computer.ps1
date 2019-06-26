@@ -26,8 +26,12 @@ If (Test-RunningAsAdministrator) {
     # Schedule a task to shutdown computer everyday at 3pm
     Schedule-Shutdown
 
-    # desinstalar onedrive
+    # Uninstall onedrive
     Uninstall-OneDrive
+
+    # Change computer name and workgroup
+    Rename-Computer -NewName "INFORMATICA"
+    Add-Computer -WorkgroupName "MINIK"
 
 } Else {
 
