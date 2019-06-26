@@ -1,2 +1,3 @@
 https://github.com/atom/atom/releases/download/v1.38.2/atom-amd64.deb
 https://az764295.vo.msecnd.net/stable/c7d83e57cd18f18026a8162d042843bda1bcf21f/code_1.35.1-1560350270_amd64.deb
+http://www.bluej.org/download/files/BlueJ-linux-421.deb
