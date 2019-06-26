@@ -54,7 +54,7 @@ function installFromUrls() {
         do
                 if [ ! -z "$url" ]
                 then
-                        "Installing $url package..."
+                        echo "Installing $url package..."
 			installFromUrl $url
                 fi
         done
@@ -89,7 +89,7 @@ function installPackages() {
 function createUser() {
         echo "Creating user $1..."
 	username=$1
-	pasword=$2
+	password=$2
 	admin=$3
 	if cat /etc/passwd | grep $username; then
 		echo "User $username already exists"

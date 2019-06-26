@@ -5,3 +5,4 @@ virtualbox-ext-pack
 virtualbox-guestadditions-iso
 filezilla
 openjdk-11-jdk
+libopenjfx-java
