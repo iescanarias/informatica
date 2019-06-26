@@ -30,10 +30,12 @@ If (Test-RunningAsAdministrator) {
     Uninstall-OneDrive
 
     # Change computer name and workgroup
-    Rename-Computer -NewName "INFORMATICA" -Force
-    Add-Computer -WorkgroupName "MINIK" -Force
+    Write-Output "Changing computer name to INFORMATICA and workgroup to MINIK..."
+    Rename-Computer -NewName "INFORMATICA" -ErrorAction SilentlyContinue
+    Add-Computer -WorkgroupName "MINIK" -ErrorAction SilentlyContinue
 
     # Set timezone
+    Write-Output "Setting timezone to GMT Standard Time"
     tzutil /s "GMT Standard Time"
 
 } Else {

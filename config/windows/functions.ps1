@@ -128,11 +128,12 @@ Function Find-SecondaryDrive() {
     
     # get removible drives excluding system volume
     $drives = Get-WmiObject Win32_Volume -Filter ("DriveType={0}" -f [int][System.io.Drivetype]::Fixed) `
-                | Where-Object { $_.DriveLetter -ne $env:SystemDrive -and $_.SystemVolume -eq $false } `
-                | Select-Object DriveLetter
+                | Where-Object { $_.DriveLetter -ne $env:SystemDrive -and $_.SystemVolume -eq $false }
 
-    If (($drives | Measure-Object).Count -gt 0) {
-        return $drives[0].DriveLetter.Trim()
+    foreach ($drive in $drives) {
+        If ($drive.DriveLetter -ne $null) {
+            return $drive.DriveLetter.Trim()
+        }
     }
 
     return $null
