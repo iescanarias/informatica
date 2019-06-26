@@ -152,9 +152,7 @@ Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
 
     $path = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
 
-    Set-ItemProperty -Path $path -Name "ProfilesDirectory" -Value "$location\Users"
-    Set-ItemProperty -Path $path -Name "Default" -Value "$location\Users\Default"
-    Set-ItemProperty -Path $path -Name "Public" -Value "$location\Users\Public"
+    Set-ItemProperty -Path $path -Name "ProfilesDirectory" -Value "$location\Users".Trim()
 
     Write-Host "Profiles location changed to $location. New profiles will be stored in $location\Users"
 
@@ -192,7 +190,7 @@ Function Schedule-Shutdown() {
 
     $taskName = "Shutdown computer"
 
-    if (Get-ScheduledTask -TaskName $taskName) {
+    if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
         
         Write-Host -ForegroundColor Yellow "Scheduled task $taskName already exists"
 
