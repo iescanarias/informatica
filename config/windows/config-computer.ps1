@@ -30,8 +30,8 @@ If (Test-RunningAsAdministrator) {
     Uninstall-OneDrive
 
     # Change computer name and workgroup
-    Rename-Computer -NewName "INFORMATICA"
-    Add-Computer -WorkgroupName "MINIK"
+    Rename-Computer -NewName "INFORMATICA" -Force
+    Add-Computer -WorkgroupName "MINIK" -Force
 
 } Else {
 
