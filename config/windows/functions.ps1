@@ -141,7 +141,7 @@ Function Find-SecondaryDrive() {
 
 }
 
-Function Change-ProfilesLocation([string]$location = ((Find-SecondaryDrive).DriveLetter.Trim())) {
+Function Change-ProfilesLocation([string]$location = ((Find-SecondaryDrive).DriveLetter)) {
 
     Write-Host "Changing profiles location to $location in Windows Registry..."
 
@@ -149,6 +149,8 @@ Function Change-ProfilesLocation([string]$location = ((Find-SecondaryDrive).Driv
         Write-Host -ForegroundColor Yellow "There is no secondary disk drive to store user profiles"
         Return
     }
+
+    $location = $location.Trim()
 
     $path = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList"
 
