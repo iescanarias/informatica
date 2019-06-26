@@ -13,4 +13,5 @@ atom
 notepadplusplus
 virtualbox
 vmware-workstation-player
-libreoffice-fresh 
+libreoffice-fresh
+bluej

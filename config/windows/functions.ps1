@@ -141,7 +141,7 @@ Function Find-SecondaryDrive() {
 
 }
 
-Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
+Function Change-ProfilesLocation([string]$location = ((Find-SecondaryDrive).DriveLetter)) {
 
     Write-Host "Changing profiles location to $location in Windows Registry..."
 
