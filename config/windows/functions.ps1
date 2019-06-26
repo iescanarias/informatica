@@ -131,19 +131,19 @@ Function Find-SecondaryDrive() {
                 | Where-Object { $_.DriveLetter -ne $env:SystemDrive -and $_.SystemVolume -eq $false } `
                 | Select-Object DriveLetter
 
-    $drives
-
     If (($drives | Measure-Object).Count -gt 0) {
-        return $drives[0].DriveLetter
+        return $drives[0].DriveLetter.Trim()
     }
 
     return $null
 
 }
 
-Function Change-ProfilesLocation([string]$location = ((Find-SecondaryDrive).DriveLetter)) {
+Function Change-ProfilesLocation([string]$location = (Find-SecondaryDrive)) {
 
     Write-Host "Changing profiles location to $location in Windows Registry..."
+
+    $drive = 
 
     If  ($location -eq $null -or $location.Length -eq 0) {
         Write-Host -ForegroundColor Yellow "There is no secondary disk drive to store user profiles"
