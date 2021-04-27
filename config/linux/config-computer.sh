@@ -38,11 +38,17 @@ function addAptRepo() {
 }
 
 # Installs DEB package from URL
-function installFromUrl() {
+function installDebFromUrl() {
 	url=$1
 	deb=/tmp/$(basename $url)
+	echo -n "Installing $url package..."
 	wget -qO $deb $url
-	dpkg -i $deb
+	if dpkg -i $deb > /dev/null 2> /dev/null
+	then
+		echo "[OK]"
+	else	
+		echo "[ERROR]"
+	fi
 }
 
 # Install from repos
@@ -52,29 +58,21 @@ function installFromRepos() {
 	for package in $(downloadContent $PACKAGES_FILE_URL)
 	do
 		echo -n "Installing $package package..."
-		if apt install -y $package > /dev/null
+		if apt install -y $package > /dev/null 2> /dev/null
 		then
-			echo "OK"
+			echo "[OK]"
 		else	
-			echo "ERROR"
+			echo "[ERROR]"
 		fi
 	done
 }
 
 # Install DEB packages from URLs file
-function installFromUrls() {
+function installDebsFromUrls() {
 	echo "Installing DEB packages from urls..."
 	for url in $(downloadContent $DEBS_FILE_URL)
 	do
-		echo -n "Installing $url package..."
-		installFromUrl $url
-		wget -qO $deb $url
-		if dpkg -i $deb > /dev/null
-		then
-			echo "OK"
-		else	
-			echo "ERROR"
-		fi
+		installDebFromUrl $url
 	done
 }
 
@@ -125,7 +123,7 @@ function addRepos() {
 function installPackages() {
 	echo "Installing packages..."
 	installFromRepos
-	installFromUrls
+	installDebsFromUrls
 	installFromBinaries
 }
 
