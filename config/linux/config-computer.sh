@@ -5,6 +5,8 @@ echo -e "\nScript de configuración automática de GNU/Linux\nDepartamento de In
 # check if is running as root
 [ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
 
+IFS=$'\n'	
+
 BASE_URL=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux
 PACKAGES_FILE_URL=$BASE_URL/packages.txt
 DEBS_FILE_URL=$BASE_URL/debs.txt
@@ -103,7 +105,7 @@ function addRepos() {
 	do
 		name=$(echo $line | cut -d, -f1)
 		url=$(echo $line | cut -d, -f2)
-		addAptRepo $name $url
+		addAptRepo "$name" "$url"
 	done
 
 	# update database packages list
