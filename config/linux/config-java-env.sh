@@ -2,7 +2,7 @@
 
 echo "Configuring Java development environment ..."
 
-JDK_VERSION=16.0.0.j9-adpt
+JDK_VERSION=11.0.11.j9-adpt
 ECLIPSE_VERSION=2021-03
 
 # install sdkman!
@@ -26,6 +26,7 @@ tar xvfz $ECLIPSE_FILE
 mkdir -p ~/.sdkman/candidates/eclipse
 mv ~/.sdkman/archives/eclipse $ECLIPSE_INSTALL_DIR
 ln -s $ECLIPSE_INSTALL_DIR ~/.sdkman/candidates/eclipse/current
+ln -s ~/.sdkman/candidates/java/current ~/.sdkman/candidates/eclipse/current/jre
 
 cat > ~/.local/share/applications/eclipse.desktop <<EOL
 [Desktop Entry]
@@ -38,5 +39,3 @@ Comment=Eclipse for Java Developers
 NoDisplay=false
 Categories=Development;IDE;
 EOL
-
-ln -s ~/.sdkman/candidates/java/current ~/.sdkman/candidates/eclipse/current/jre

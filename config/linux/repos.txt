@@ -1,3 +1,5 @@
 google-chrome,deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 atom,deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main
 typora,deb https://typora.io/linux ./
+teamviewer,deb http://linux.teamviewer.com/deb stable main
+anydesk,deb http://deb.anydesk.com/ all main

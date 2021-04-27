@@ -49,7 +49,7 @@ function installFromUrl() {
 function installFromRepos() {
 	echo "Installing DEB packages from repos..."
 	addRepos
-	for package in $(downloadcontent $PACKAGES_FILE_URL)
+	for package in $(downloadContent $PACKAGES_FILE_URL)
 	do
 		echo "Installing $package package..."
 		apt install -y $package

@@ -8,3 +8,5 @@ gimp
 atom
 typora
 pdftk
+teamviewer
+anydesk
