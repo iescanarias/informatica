@@ -115,7 +115,7 @@ function addRepos() {
 	done
 
 	# update database packages list
-	apt update
+	apt update > /dev/null
 
 }
 
