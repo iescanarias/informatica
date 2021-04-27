@@ -51,8 +51,13 @@ function installFromRepos() {
 	addRepos
 	for package in $(downloadContent $PACKAGES_FILE_URL)
 	do
-		echo "Installing $package package..."
-		apt install -y $package
+		echo -n "Installing $package package..."
+		if apt install -y $package > /dev/null
+		then
+			echo "OK"
+		else	
+			echo "ERROR"
+		fi
 	done
 }
 
@@ -61,10 +66,15 @@ function installFromUrls() {
 	echo "Installing DEB packages from urls..."
 	for url in $(downloadContent $DEBS_FILE_URL)
 	do
-		echo "Installing $url package..."
+		echo -n "Installing $url package..."
 		installFromUrl $url
 		wget -qO $deb $url
-		dpkg -i $deb			
+		if dpkg -i $deb > /dev/null
+		then
+			echo "OK"
+		else	
+			echo "ERROR"
+		fi
 	done
 }
 
@@ -94,18 +104,14 @@ function addRepos() {
 
 	echo "Adding new APT repositories..."
 
-	# add keys
-	for url in $(downloadContent $KEYS_FILE_URL)
-	do
-		addAptKey $url
-	done
-
-	# add repos
+	# add keys and repos
 	for line in $(downloadContent $REPOS_FILE_URL)
 	do
 		name=$(echo $line | cut -d, -f1)
-		url=$(echo $line | cut -d, -f2)
-		addAptRepo "$name" "$url"
+		keyUrl=$(echo $line | cut -d, -f2)
+		repoUrl=$(echo $line | cut -d, -f3)
+		addAptKey "$keyUrl"
+		addAptRepo "$name" "$repoUrl"
 	done
 
 	# update database packages list

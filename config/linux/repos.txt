@@ -1,5 +1,5 @@
-google-chrome,deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
-atom,deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main
-typora,deb https://typora.io/linux ./
-teamviewer,deb http://linux.teamviewer.com/deb stable main
-anydesk,deb http://deb.anydesk.com/ all main
+google-chrome,https://dl.google.com/linux/linux_signing_key.pub,deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+atom,https://packagecloud.io/AtomEditor/atom/gpgkey,deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main
+typora,https://typora.io/linux/public-key.asc,deb https://typora.io/linux ./
+teamviewer,https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc,deb http://linux.teamviewer.com/deb stable main
+anydesk,https://keys.anydesk.com/repos/DEB-GPG-KEY,deb http://deb.anydesk.com/ all main
