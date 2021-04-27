@@ -21,9 +21,8 @@ function downloadContent() {
 
 # add apt key
 function addAptKey() {
-	echo "Adding $1 APT key ... "
 	url=$1
-	wget -qO- $url | sudo apt-key add -
+	wget -qO- $url | sudo apt-key add - > /dev/null 2> /dev/null
 }
 
 function addAptRepo() {
@@ -115,12 +114,17 @@ function addRepos() {
 	done
 
 	# update database packages list
-	echo "Downloading package information from all configured sources ..."
-	apt update > /dev/null 2> /dev/null
+	echo -n "Downloading package information from all configured sources ..."
+	if apt update > /dev/null 2> /dev/null
+	then	
+		echo "[OK]"
+	else	
+		echo "[ERROR]"
+	fi
 
 }
 
-# packages installation
+# Install packages
 function installPackages() {
 	echo "Installing packages..."
 	installFromRepos
@@ -129,7 +133,7 @@ function installPackages() {
 }
 
 
-# create new user
+# Create new user
 function createUser() {
     echo "Creating user $1..."
 	username=$1
@@ -147,21 +151,21 @@ function createUser() {
 	fi
 }
 
-# schedule a task to shutdown computer everyday at 3pm
+# Schedule a task to shutdown computer everyday at 3pm
 function scheduleShutdown() {
     echo "Schedule computer shutdown everyday at 3pm..."
 	echo "0 15 * * * root /sbin/shutdown -h now" > /etc/cron.d/shutdown
 }
 
-# Packages installation
-installPackages
-
 # Create new users
 echo "Creating users..."
 createUser "alumno" "onmula" true
 
+# Packages installation
+installPackages
+
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
 
-# Empty temporary directory
+# Take out the trash
 rm -fr /tmp/*
