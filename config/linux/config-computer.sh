@@ -21,13 +21,13 @@ function downloadContent() {
 
 # add apt key
 function addAptKey() {
-	echo "Add $1 APT key"
+	echo "Adding $1 APT key ... "
 	url=$1
 	wget -qO- $url | sudo apt-key add -
 }
 
 function addAptRepo() {
-	echo "Add $1 repo to APT sources"
+	echo "Adding $1 repo to APT sources ..."
 	repo=/etc/apt/sources.list.d/$1.list
 	line=$2
 	if [ ! -f $repo ]; then
@@ -109,13 +109,14 @@ function addRepos() {
 		keyUrl=$(echo $line | cut -d, -f2)
 		repoUrl=$(echo $line | cut -d, -f3)
 		if [ ! -z "$keyUrl" ]; then
-			addAptKey "$keyUrl"
+			addAptKey $keyUrl
 		fi
-		addAptRepo "$name" "$repoUrl"
+		addAptRepo $name $repoUrl
 	done
 
 	# update database packages list
-	apt update > /dev/null
+	echo "Downloading package information from all configured sources ..."
+	apt update > /dev/null 2> /dev/null
 
 }
 
