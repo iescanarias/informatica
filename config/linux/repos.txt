@@ -3,3 +3,4 @@ atom,https://packagecloud.io/AtomEditor/atom/gpgkey,deb [arch=amd64] https://pac
 typora,https://typora.io/linux/public-key.asc,deb https://typora.io/linux ./
 teamviewer,https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc,deb http://linux.teamviewer.com/deb stable main
 anydesk,https://keys.anydesk.com/repos/DEB-GPG-KEY,deb http://deb.anydesk.com/ all main
+opera,https://deb.opera.com/archive.key,deb https://deb.opera.com/opera-stable/ stable non-free

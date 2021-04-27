@@ -9,5 +9,5 @@ typora
 pdftk
 teamviewer
 anydesk
-packer
 vagrant
+opera-stable

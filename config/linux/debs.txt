@@ -4,4 +4,3 @@ SceneBuilder,https://download2.gluonhq.com/scenebuilder/16.0.0/install/linux/Sce
 Master PDF Editor,https://code-industry.net/public/master-pdf-editor-5.7.53-qt5_included.x86_64.deb
 GitKraken,https://release.gitkraken.com/linux/gitkraken-amd64.deb
 Structorizer,https://www.fisch.lu/Php/download.php?file=structorizer.deb
-Opera,https://download3.operacdn.com/pub/opera/desktop/75.0.3969.218/linux/opera-stable_75.0.3969.218_amd64.deb
