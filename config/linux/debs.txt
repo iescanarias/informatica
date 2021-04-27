@@ -1,3 +1,5 @@
 https://az764295.vo.msecnd.net/stable/c7d83e57cd18f18026a8162d042843bda1bcf21f/code_1.35.1-1560350270_amd64.deb
 https://www.bluej.org/download/files/BlueJ-linux-500.deb
 https://download2.gluonhq.com/scenebuilder/16.0.0/install/linux/SceneBuilder-16.0.0.deb
+https://code-industry.net/public/master-pdf-editor-5.7.53-qt5_included.x86_64.deb
+https://release.gitkraken.com/linux/gitkraken-amd64.deb
