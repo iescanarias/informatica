@@ -74,7 +74,7 @@ function installFromRepos() {
 # Install DEB packages from URLs file
 function installDebsFromUrls() {
 	echo "Installing DEB packages from urls..."
-	for url in $(downloadContent $DEBS_FILE_URL)
+	for line in $(downloadContent $DEBS_FILE_URL)
 	do
 		if [[ $package =~ ^#.*$ ]];
 		then
