@@ -10,7 +10,7 @@ PACKAGES_FILE_URL=$BASE_URL/packages.txt
 DEBS_FILE_URL=$BASE_URL/debs.txt
 KEYS_FILE_URL=$BASE_URL/keys.txt
 REPOS_FILE_URL=$BASE_URL/repos.txt
-REPOS_FILE_URL=$BASE_URL/binaries.txt
+BINARIES_FILE_URL=$BASE_URL/binaries.txt
 
 # download content from url
 function downloadContent() {
