@@ -25,7 +25,7 @@ ECLIPSE_INSTALL_DIR=~/.sdkman/candidates/eclipse/$ECLIPSE_VERSION
 ECLIPSE_LINK=~/.sdkman/candidates/eclipse/current
 
 wget -qO $ECLIPSE_FILE $ECLIPSE_DOWNLOAD_URL
-tar xfz $ECLIPSE_FILE
+cd /tmp && tar xfz $ECLIPSE_FILE
 mkdir -p ~/.sdkman/candidates/eclipse
 mv /tmp/eclipse $ECLIPSE_INSTALL_DIR
 ln -s $ECLIPSE_INSTALL_DIR $ECLIPSE_LINK

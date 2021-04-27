@@ -146,7 +146,7 @@ function addRepos() {
 # Install packages
 function installPackages() {
 	echo "Installing packages..."
-	installFromRepos
+	#installFromRepos
 	installDebsFromUrls
 	installFromBinaries
 }
