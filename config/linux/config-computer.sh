@@ -26,7 +26,7 @@ function addAptKey() {
 }
 
 function addAptRepo() {
-	echo "Adding $1 repo to APT sources ..."
+	echo "Adding $1 repo to APT sources list ..."
 	repo=/etc/apt/sources.list.d/$1.list
 	line=$2
 	if [ ! -f $repo ]; then
