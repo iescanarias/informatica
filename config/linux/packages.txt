@@ -1,6 +1,5 @@
 google-chrome-stable
 virtualbox
-virtualbox-ext-pack
 virtualbox-guest-additions-iso
 filezilla
 git
