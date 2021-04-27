@@ -41,9 +41,9 @@ function installDebFromUrl() {
 	name=$1
 	url=$2
 	deb=/tmp/$(basename $url)
-	echo -n "Installing $name package..."
+	echo -n "Installing $name package from DEB file..."
 	wget -qO $deb $url
-	if dpkg -i $deb > /dev/null 2> /dev/null
+	if dpkg -i $deb
 	then
 		echo "[OK]"
 	else	
@@ -61,8 +61,8 @@ function installFromRepos() {
 		then
 			break
 		fi
-		echo -n "Installing $package package..."
-		if apt install -y $package > /dev/null 2> /dev/null
+		echo -n "Installing $package package from repo..."
+		if apt install -y $package
 		then
 			echo "[OK]"
 		else	
