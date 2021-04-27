@@ -110,7 +110,9 @@ function addRepos() {
 		name=$(echo $line | cut -d, -f1)
 		keyUrl=$(echo $line | cut -d, -f2)
 		repoUrl=$(echo $line | cut -d, -f3)
-		addAptKey "$keyUrl"
+		if [ ! -z "$keyUrl" ]; then
+			addAptKey "$keyUrl"
+		fi
 		addAptRepo "$name" "$repoUrl"
 	done
 
