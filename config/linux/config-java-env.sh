@@ -17,7 +17,7 @@ sdk install maven
 
 # install eclipse ide for java developers
 
-ECLIPSE_DOWNLOAD_URL=https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/$ECLIPSE_VERSION/R/eclipse-java-$ECLIPSE_VERSION-R-linux-gtk-x86_64.tar.gz
+ECLIPSE_DOWNLOAD_URL=https://mirrors.dotsrc.org/eclipse/technology/epp/downloads/release/$ECLIPSE_VERSION/R/eclipse-java-$ECLIPSE_VERSION-R-linux-gtk-x86_64.tar.gz
 ECLIPSE_FILE=~/.sdkman/archives/eclipse.tgz
 ECLIPSE_INSTALL_DIR=~/.sdkman/candidates/eclipse/$ECLIPSE_VERSION
 
