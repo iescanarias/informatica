@@ -1,0 +1,3 @@
+https://dl.google.com/linux/linux_signing_key.pub
+https://packagecloud.io/AtomEditor/atom/gpgkey
+https://typora.io/linux/public-key.asc

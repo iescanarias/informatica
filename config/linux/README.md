@@ -2,13 +2,12 @@
 
 Para configurar los equipos con Debian instalado ejecutamos un script que hace lo siguiente:
 
-1. Instala el software de la siguiente [lista](packages.txt) de paquetes.
-
-2. Instala el software de la siguiente [lista](urls.txt) de URLs.
-
-2. Crear los perfiles de los usuarios: `Profesor` y `Alumno`.
-
-3. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
+1. Instala los certificados de los repositorios de la siguiente [lista](keys.txt).
+2. Configura en el sistema los repositorios de la siguiente [lista](repos.txt).
+3. Instala los paquetes de la siguiente [lista](packages.txt).
+4. Instala los paquetes DEB de la siguiente [lista](debs.txt) de URLs.
+5. Crear los perfiles de los usuarios: `Profesor` y `Alumno`.
+6. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
 
 ## Requisitos
 

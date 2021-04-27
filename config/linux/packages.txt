@@ -1,8 +1,9 @@
 google-chrome-stable
-eclipse
 virtualbox 
 virtualbox-ext-pack 
 virtualbox-guestadditions-iso
 filezilla
-openjdk-11-jdk
-libopenjfx-java
+git
+gimp
+atom
+typora

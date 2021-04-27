@@ -5,8 +5,17 @@ echo -e "\nScript de configuración automática de GNU/Linux\nDepartamento de In
 # check if is running as root
 [ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
 
-packagesFileUrl=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux/packages.txt
-urlsFileUrl=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux/urls.txt
+BASE_URL=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux
+PACKAGES_FILE_URL=$BASE_URL/packages.txt
+DEBS_FILE_URL=$BASE_URL/debs.txt
+KEYS_FILE_URL=$BASE_URL/keys.txt
+REPOS_FILE_URL=$BASE_URL/repos.txt
+REPOS_FILE_URL=$BASE_URL/binaries.txt
+
+# download content from url
+function downloadContent() {
+	wget -qO- $1 | sed -r '/^\s*$/d'
+}
 
 # add apt key
 function addAptKey() {
@@ -36,28 +45,45 @@ function installFromUrl() {
 
 # Install from repos
 function installFromRepos() {
-	echo "Installing packages from repos..."
-	for package in $(wget -qO- $packagesFileUrl)
+	echo "Installing DEB packages from repos..."
+	addRepos
+	for package in $(downloadcontent $PACKAGES_FILE_URL)
 	do
-		if [ ! -z "$package" ]
-		then
-			echo "Installing $package package..."
-			apt install -y $package
-		fi
+		echo "Installing $package package..."
+		apt install -y $package
 	done
 }
 
-# Install from URLs
+# Install DEB packages from URLs file
 function installFromUrls() {
-        echo "Installing packages from urls..."
-        for url in $(wget -qO- $urlsFileUrl)
-        do
-                if [ ! -z "$url" ]
-                then
-                        echo "Installing $url package..."
-			installFromUrl $url
-                fi
-        done
+	echo "Installing DEB packages from urls..."
+	for url in $(downloadContent $DEBS_FILE_URL)
+	do
+		echo "Installing $url package..."
+		installFromUrl $url
+		wget -qO $deb $url
+		dpkg -i $deb			
+	done
+}
+
+# Install software from binary installers
+function installFromBinaries() {
+	echo "Installing software from binaries/scripts..."
+	for line in $(downloadContent $BINARIES_FILE_URL)
+	do
+		username=$(echo $line | cut -d, -f1)
+		filename=$(echo $line | cut -d, -f2)
+		url=$(echo $line | cut -d, -f3)
+		binary=/tmp/$filename
+		echo "Installing $filename ..."
+		wget -qO $binary $url
+		chmod +x $binary
+		if [ "$username" == root ]; then
+			$binary
+		else
+			/bin/su -c "$binary" - $username
+		fi
+	done
 }
 
 
@@ -67,10 +93,18 @@ function addRepos() {
 	echo "Adding new APT repositories..."
 
 	# add keys
-	addAptKey "https://dl.google.com/linux/linux_signing_key.pub"
+	for url in $(downloadContent $KEYS_FILE_URL)
+	do
+		addAptKey $url
+	done
 
 	# add repos
-	addAptRepo "google-chrome" "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" 
+	for line in $(downloadContent $REPOS_FILE_URL)
+	do
+		name=$(echo $line | cut -d, -f1)
+		url=$(echo $line | cut -d, -f2)
+		addAptRepo $name $url
+	done
 
 	# update database packages list
 	apt update
@@ -80,14 +114,15 @@ function addRepos() {
 # packages installation
 function installPackages() {
 	echo "Installing packages..."
-	addRepos
 	installFromRepos
 	installFromUrls
+	installFromBinaries
 }
+
 
 # create new user
 function createUser() {
-        echo "Creating user $1..."
+    echo "Creating user $1..."
 	username=$1
 	password=$2
 	admin=$3
@@ -105,7 +140,7 @@ function createUser() {
 
 # schedule a task to shutdown computer everyday at 3pm
 function scheduleShutdown() {
-        echo "Schedule computer shutdown everyday at 3pm..."
+    echo "Schedule computer shutdown everyday at 3pm..."
 	echo "0 15 * * * root /sbin/shutdown -h now" > /etc/cron.d/shutdown
 }
 
@@ -114,8 +149,7 @@ installPackages
 
 # Create new users
 echo "Creating users..."
-createUser "profesor" "roseforp" true
-createUser "alumno" "onmula" false
+createUser "alumno" "onmula" true
 
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
