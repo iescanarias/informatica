@@ -2,3 +2,4 @@ https://az764295.vo.msecnd.net/stable/c7d83e57cd18f18026a8162d042843bda1bcf21f/c
 https://www.bluej.org/download/files/BlueJ-linux-500.deb
 https://download2.gluonhq.com/scenebuilder/16.0.0/install/linux/SceneBuilder-16.0.0.deb
 https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb
+https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
