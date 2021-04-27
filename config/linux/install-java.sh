@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "Configuring Java development environment ..."
-
 JDK_VERSION=11.0.11.j9-adpt
 ECLIPSE_VERSION=2021-03
+
+echo "Configuring Java $JDK_VERSION ..."
 
 # install sdkman!
 curl -s "https://get.sdkman.io" | bash
@@ -16,6 +16,8 @@ sdk install java $JDK_VERSION
 sdk install maven
 
 # install eclipse ide for java developers
+
+echo "Installing Eclipse $ECLIPSE_VERSION ..."
 
 ECLIPSE_DOWNLOAD_URL=https://mirrors.dotsrc.org/eclipse/technology/epp/downloads/release/$ECLIPSE_VERSION/R/eclipse-java-$ECLIPSE_VERSION-R-linux-gtk-x86_64.tar.gz
 ECLIPSE_FILE=~/.sdkman/archives/eclipse.tgz
