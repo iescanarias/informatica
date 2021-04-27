@@ -1,7 +1,7 @@
 google-chrome-stable
 virtualbox 
 virtualbox-ext-pack 
-virtualbox-guestadditions-iso
+virtualbox-guest-additions-iso
 filezilla
 git
 gimp
@@ -10,3 +10,5 @@ typora
 pdftk
 teamviewer
 anydesk
+packer
+vagrant
