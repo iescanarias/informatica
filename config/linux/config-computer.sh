@@ -38,9 +38,10 @@ function addAptRepo() {
 
 # Installs DEB package from URL
 function installDebFromUrl() {
-	url=$1
+	name=$1
+	url=$2
 	deb=/tmp/$(basename $url)
-	echo -n "Installing $url package..."
+	echo -n "Installing $name package..."
 	wget -qO $deb $url
 	if dpkg -i $deb > /dev/null 2> /dev/null
 	then
@@ -56,6 +57,10 @@ function installFromRepos() {
 	addRepos
 	for package in $(downloadContent $PACKAGES_FILE_URL)
 	do
+		if [[ $package =~ ^#.*$ ]];
+		then
+			break
+		fi
 		echo -n "Installing $package package..."
 		if apt install -y $package > /dev/null 2> /dev/null
 		then
@@ -71,7 +76,13 @@ function installDebsFromUrls() {
 	echo "Installing DEB packages from urls..."
 	for url in $(downloadContent $DEBS_FILE_URL)
 	do
-		installDebFromUrl $url
+		if [[ $package =~ ^#.*$ ]];
+		then
+			break
+		fi
+		name=$(echo $line | cut -d, -f1)
+		url=$(echo $line | cut -d, -f2)
+		installDebFromUrl $name $url
 	done
 }
 
@@ -80,6 +91,10 @@ function installFromBinaries() {
 	echo "Installing software from binaries/scripts..."
 	for line in $(downloadContent $BINARIES_FILE_URL)
 	do
+		if [[ $package =~ ^#.*$ ]];
+		then
+			break
+		fi
 		username=$(echo $line | cut -d, -f1)
 		filename=$(echo $line | cut -d, -f2)
 		url=$(echo $line | cut -d, -f3)
@@ -104,6 +119,10 @@ function addRepos() {
 	# add keys and repos
 	for line in $(downloadContent $REPOS_FILE_URL)
 	do
+		if [[ $package =~ ^#.*$ ]];
+		then
+			break
+		fi
 		name=$(echo $line | cut -d, -f1)
 		keyUrl=$(echo $line | cut -d, -f2)
 		repoUrl=$(echo $line | cut -d, -f3)
