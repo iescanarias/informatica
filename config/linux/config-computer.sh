@@ -22,7 +22,7 @@ function downloadContent() {
 # add apt key
 function addAptKey() {
 	url=$1
-	wget -qO- $url | sudo apt-key add - > /dev/null 2> /dev/null
+	wget -qO- $url | sudo apt-key add -
 }
 
 function addAptRepo() {
@@ -134,7 +134,7 @@ function addRepos() {
 
 	# update database packages list
 	echo -n "Downloading package information from all configured sources ..."
-	if apt update > /dev/null 2> /dev/null
+	if apt update
 	then	
 		echo "[OK]"
 	else	
@@ -146,7 +146,7 @@ function addRepos() {
 # Install packages
 function installPackages() {
 	echo "Installing packages..."
-	#installFromRepos
+	installFromRepos
 	installDebsFromUrls
 	installFromBinaries
 }

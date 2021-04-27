@@ -21,18 +21,18 @@ echo "Installing Eclipse $ECLIPSE_VERSION ..."
 
 ECLIPSE_DOWNLOAD_URL=https://mirrors.dotsrc.org/eclipse/technology/epp/downloads/release/$ECLIPSE_VERSION/R/eclipse-java-$ECLIPSE_VERSION-R-linux-gtk-x86_64.tar.gz
 ECLIPSE_FILE=/tmp/eclipse.tgz
-ECLIPSE_INSTALL_DIR=~/.sdkman/candidates/eclipse/$ECLIPSE_VERSION
-ECLIPSE_LINK=~/.sdkman/candidates/eclipse/current
+ECLIPSE_INSTALL_DIR=$HOME/.sdkman/candidates/eclipse/$ECLIPSE_VERSION
+ECLIPSE_LINK=$HOME/.sdkman/candidates/eclipse/current
 
 wget -qO $ECLIPSE_FILE $ECLIPSE_DOWNLOAD_URL
 cd /tmp && tar xfz $ECLIPSE_FILE
-mkdir -p ~/.sdkman/candidates/eclipse
+mkdir -p $HOME/.sdkman/candidates/eclipse
 mv /tmp/eclipse $ECLIPSE_INSTALL_DIR
 ln -s $ECLIPSE_INSTALL_DIR $ECLIPSE_LINK
-ln -s ~/.sdkman/candidates/java/current $ECLIPSE_LINK/jre
+ln -s $HOME/.sdkman/candidates/java/current $ECLIPSE_LINK/jre
 
-mkdir -p ~/.local/share/applications
-cat > ~/.local/share/applications/eclipse.desktop <<EOL
+mkdir -p $HOME/.local/share/applications
+cat > $HOME/.local/share/applications/eclipse.desktop <<EOL
 [Desktop Entry]
 Name=Eclipse
 Type=Application
