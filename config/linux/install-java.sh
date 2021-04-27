@@ -24,12 +24,13 @@ ECLIPSE_FILE=~/.sdkman/archives/eclipse.tgz
 ECLIPSE_INSTALL_DIR=~/.sdkman/candidates/eclipse/$ECLIPSE_VERSION
 
 wget -qO $ECLIPSE_FILE $ECLIPSE_DOWNLOAD_URL
-tar xvfz $ECLIPSE_FILE
+tar xfz $ECLIPSE_FILE
 mkdir -p ~/.sdkman/candidates/eclipse
 mv ~/.sdkman/archives/eclipse $ECLIPSE_INSTALL_DIR
 ln -s $ECLIPSE_INSTALL_DIR ~/.sdkman/candidates/eclipse/current
 ln -s ~/.sdkman/candidates/java/current ~/.sdkman/candidates/eclipse/current/jre
 
+mkdir -p ~/.local/share/applications
 cat > ~/.local/share/applications/eclipse.desktop <<EOL
 [Desktop Entry]
 Name=Eclipse
