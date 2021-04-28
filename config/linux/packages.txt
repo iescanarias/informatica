@@ -1,6 +1,7 @@
 google-chrome-stable
 virtualbox
-virtualbox-guest-additions-iso
+virtualbox-ext-pack
+#virtualbox-guest-additions-iso
 filezilla
 git
 gimp
