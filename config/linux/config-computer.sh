@@ -177,8 +177,8 @@ function scheduleShutdown() {
 }
 
 # Create new users
-echo "Creating users..."
-createUser "alumno" "onmula" true
+#echo "Creating users..."
+#createUser "alumno" "onmula" true
 
 # Packages installation
 installPackages
