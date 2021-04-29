@@ -14,7 +14,7 @@ wget -O $ECLIPSE_TGZ $ECLIPSE_DOWNLOAD_URL
 cd /tmp && tar xfz $ECLIPSE_TGZ
 mkdir -p $HOME/eclipse
 mv /tmp/eclipse $ECLIPSE_INSTALL_DIR
-ln -s $JAVA_HOME $ECLIPSE_LINK/jre
+ln -s $JAVA_HOME $ECLIPSE_INSTALL_DIR/jre
 
 mkdir -p $HOME/.local/share/applications
 cat > $HOME/.local/share/applications/eclipse.desktop <<EOL
