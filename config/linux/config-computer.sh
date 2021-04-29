@@ -1,6 +1,9 @@
 #!/bin/bash
 
-echo -e "\nScript de configuración automática de GNU/Linux\nDepartamento de Informática del IES Domingo Pérez Minik\n"
+echo "===================================================="
+echo "Debian based Linux config script"
+echo "Computer Science Department, IES Domingo Pérez Minik"
+echo "===================================================="
 
 # check if is running as root
 #[ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
@@ -9,29 +12,24 @@ IFS=$'\n'
 
 BASE_URL=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux
 CONFIG_FILE_URL=$BASE_URL/install.conf
-CONFIG_FILE=/tmp/install.conf
 
-# download content from url
+# Get config for type
 function getConfig() {
-	wget -qO $CONFIG_FILE $CONFIG_FILE_URL
-	#sed -i -r '/^\s*$/d' $CONFIG_FILE
+	type=$1
+	wget -qO- $CONFIG_FILE_URL | sed -r '/^(\s*|#.*)$/d' | grep "^$type,"
 }
 
-# add apt key
-function addAptKey() {
-	url=$1
-	wget -qO- $url | sudo apt-key add -
-}
-
-function addAptRepo() {
-	echo "Adding $1 repo to APT sources list ..."
-	repo=/etc/apt/sources.list.d/$1.list
-	line=$2
-	if [ ! -f $repo ]; then
-		echo $line > $repo
-	else
-		echo "Repo $repo already exists"
-	fi
+# Install from repos
+function installFromRepos() {
+	echo "Installing packages from repos..."
+	addRepos
+	for line in $(getConfig package)
+	do
+		name=$(echo $line | cut -d, -f2)
+		package=$(echo $line | cut -d, -f3)
+		echo -n "Installing $name package from repo..."
+		apt install -y $package && echo "[OK]" || echo "[ERROR]"
+	done
 }
 
 # Installs DEB package from URL
@@ -41,45 +39,16 @@ function installDebFromUrl() {
 	deb=/tmp/$(basename $url)
 	echo -n "Installing $name package from DEB file..."
 	wget -qO $deb $url
-	if dpkg -i $deb
-	then
-		echo "[OK]"
-	else	
-		echo "[ERROR]"
-	fi
+	dpkg -i $deb && echo "[OK]" || echo "[ERROR]"
 }
 
-# Install from repos
-function installFromRepos() {
-	echo "Installing DEB packages from repos..."
-	addRepos
-	for package in $(downloadContent $PACKAGES_FILE_URL)
-	do
-		if [[ $package =~ ^#.*$ ]];
-		then
-			break
-		fi
-		echo -n "Installing $package package from repo..."
-		if apt install -y $package
-		then
-			echo "[OK]"
-		else	
-			echo "[ERROR]"
-		fi
-	done
-}
-
-# Install DEB packages from URLs file
+# Install DEB packages from URLs in config file
 function installDebsFromUrls() {
-	echo "Installing DEB packages from urls..."
-	for line in $(downloadContent $DEBS_FILE_URL)
+	echo "Installing DEB files from urls..."
+	for line in $(getConfig deb)
 	do
-		if [[ $package =~ ^#.*$ ]];
-		then
-			break
-		fi
-		name=$(echo $line | cut -d, -f1)
-		url=$(echo $line | cut -d, -f2)
+		name=$(echo $line | cut -d, -f2)
+		url=$(echo $line | cut -d, -f3)
 		installDebFromUrl $name $url
 	done
 }
@@ -87,58 +56,36 @@ function installDebsFromUrls() {
 # Install software from binary installers
 function installFromBinaries() {
 	echo "Installing software from binaries/scripts..."
-	for line in $(downloadContent $BINARIES_FILE_URL)
+	for line in $(getConfig installer)
 	do
-		if [[ $package =~ ^#.*$ ]];
-		then
-			break
-		fi
-		username=$(echo $line | cut -d, -f1)
-		filename=$(echo $line | cut -d, -f2)
-		url=$(echo $line | cut -d, -f3)
-		binary=/tmp/$filename
+		name=$(echo $line | cut -d, -f2)
+		user=$(echo $line | cut -d, -f3)
+		binary=/tmp/$(echo $line | cut -d, -f4)
+		url=$(echo $line | cut -d, -f5)
 		echo "Installing $filename ..."
 		wget -qO $binary $url
 		chmod +x $binary
-		if [ "$username" == root ]; then
-			$binary
-		else
-			/bin/su -c "$binary" - $username
-		fi
+		[ "$username" == root ] && $binary || /bin/su -c "$binary" - $username
 	done
 }
-
 
 # add apt repository
 function addRepos() {
 
-	echo "Adding new APT repositories..."
-
 	# add keys and repos
-	for line in $(downloadContent $REPOS_FILE_URL)
+	for line in $(getConfig repo)
 	do
-		if [[ $package =~ ^#.*$ ]];
-		then
-			break
-		fi
-		name=$(echo $line | cut -d, -f1)
-		keyUrl=$(echo $line | cut -d, -f2)
-		repoUrl=$(echo $line | cut -d, -f3)
-		if [ ! -z "$keyUrl" ]; then
-			addAptKey $keyUrl
-		fi
-		addAptRepo $name $repoUrl
+		name=$(echo $line | cut -d, -f2)
+		repo=$(echo $line | cut -d, -f3)
+		key=$(echo $line | cut -d, -f4)
+		echo "Adding $name repository..."
+		[ ! -z "$key" ] && wget -qO- $key | apt-key add -
+		apt-add-repository $repo && echo "[OK"] || echo "[ERROR]"
 	done
 
 	# update database packages list
 	echo -n "Downloading package information from all configured sources ..."
-	if apt update
-	then	
-		echo "[OK]"
-	else	
-		echo "[ERROR]"
-	fi
-
+	apt update && echo "[OK"] || echo "[ERROR]"
 }
 
 # Install packages
@@ -148,7 +95,6 @@ function installPackages() {
 	installDebsFromUrls
 	installFromBinaries
 }
-
 
 # Create new user
 function createUser() {
@@ -161,10 +107,8 @@ function createUser() {
 	else
 		useradd -m -s /bin/bash $username
 		echo $username:$password | chpasswd
-		if [ "$admin" = "true" ]; then
-			adduser $username sudo
-		fi
-		echo "User $username created"
+		[ "$admin" = "true" ] && adduser $username sudo
+		echo "User $username created!"
 	fi
 }
 
@@ -175,19 +119,17 @@ function scheduleShutdown() {
 }
 
 # Upgrade system
-#apt upgrade
+apt upgrade
 
 # Create new users
-#echo "Creating users..."
-#createUser "alumno" "onmula" true
+echo "Creating users..."
+createUser "alumno" "onmula" true
 
 # Packages installation
-#installPackages
+installPackages
 
 # Schedule a task to shutdown computer everyday at 3pm
-#scheduleShutdown
+scheduleShutdown
 
 # Take out the trash
-#rm -fr /tmp/*
-
-getConfig
+rm -fr /tmp/*
