@@ -4,3 +4,4 @@ SceneBuilder,https://download2.gluonhq.com/scenebuilder/16.0.0/install/linux/Sce
 Master PDF Editor,https://code-industry.net/public/master-pdf-editor-5.7.53-qt5_included.x86_64.deb
 GitKraken,https://release.gitkraken.com/linux/gitkraken-amd64.deb
 Structorizer,https://www.fisch.lu/Php/download.php?file=structorizer.deb
+SmartGit,https://www.syntevo.com/downloads/smartgit/smartgit-20_2_4.deb
