@@ -11,7 +11,7 @@ JAVA_HOME=$(basename $(basename $(which java)))
 echo "Installing Eclipse $ECLIPSE_VERSION ..."
 
 wget -q $ECLIPSE_TGZ $ECLIPSE_DOWNLOAD_URL
-cd /tmp && tar xfz $ECLIPSE_FILE
+cd /tmp && tar xfz $ECLIPSE_TGZ
 mkdir -p $HOME/eclipse
 mv /tmp/eclipse $ECLIPSE_INSTALL_DIR
 ln -s $JAVA_HOME $ECLIPSE_LINK/jre
