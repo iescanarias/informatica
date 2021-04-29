@@ -52,6 +52,4 @@ $ECLIPSE_LINK/eclipse \
     -destination $ECLIPSE_LINK \
     -installIU org.apache.batik.feature.group \
     -installIU com.objectaid.uml.cls.feature.group \
-    -installIU com.objectaid.uml.addon.feature.group \
-    -installIU com.objectaid.uml.seq.feature.group
     -profile SDKProfile
