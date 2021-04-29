@@ -34,6 +34,7 @@ $ECLIPSE_INSTALL_DIR/eclipse \
     -nosplash \
     -application org.eclipse.equinox.p2.director \
     -repository http://www.objectaid.com/update/current \
+    -repository http://download.eclipse.org/releases/2021-03 \
     -destination $ECLIPSE_INSTALL_DIR \
     -installIU org.apache.batik.feature.group \
     -installIU com.objectaid.uml.cls.feature.group \
