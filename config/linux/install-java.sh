@@ -54,3 +54,4 @@ $ECLIPSE_LINK/eclipse \
     -installIU com.objectaid.uml.cls.feature.group \
     -installIU com.objectaid.uml.addon.feature.group \
     -installIU com.objectaid.uml.seq.feature.group
+    -profile SDKProfile
