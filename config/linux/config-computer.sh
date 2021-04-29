@@ -80,7 +80,7 @@ function addRepos() {
 		key=$(echo $line | cut -d, -f4)
 		echo "Adding $name repository..."
 		[ ! -z "$key" ] && wget -qO- $key | apt-key add -
-		apt-add-repository $repo && echo "[OK"] || echo "[ERROR]"
+		apt-add-repository -y $repo && echo "[OK"] || echo "[ERROR]"
 	done
 
 	# update database packages list
