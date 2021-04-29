@@ -19,6 +19,25 @@ function getConfig() {
 	wget -qO- $CONFIG_FILE_URL | sed -r '/^(\s*|#.*)$/d' | grep "^$type,"
 }
 
+# add apt repository
+function addRepos() {
+
+	# add keys and repos
+	for line in $(getConfig repo)
+	do
+		name=$(echo $line | cut -d, -f2)
+		repo=$(echo $line | cut -d, -f3)
+		key=$(echo $line | cut -d, -f4)
+		echo "Adding $name repository..."
+		[ ! -z "$key" ] && wget -qO- $key | apt-key add -
+		apt-add-repository -y $repo && echo "[OK"] || echo "[ERROR]"
+	done
+
+	# update database packages list
+	echo -n "Downloading package information from all configured sources ..."
+	apt update && echo "[OK"] || echo "[ERROR]"
+}
+
 # Install from repos
 function installFromRepos() {
 	echo "Installing packages from repos..."
@@ -62,30 +81,11 @@ function installFromBinaries() {
 		user=$(echo $line | cut -d, -f3)
 		binary=/tmp/$(echo $line | cut -d, -f4)
 		url=$(echo $line | cut -d, -f5)
-		echo "Installing $filename ..."
+		echo "Installing $name ..."
 		wget -qO $binary $url
 		chmod +x $binary
 		[ "$username" == root ] && $binary || /bin/su -c "$binary" - $username
 	done
-}
-
-# add apt repository
-function addRepos() {
-
-	# add keys and repos
-	for line in $(getConfig repo)
-	do
-		name=$(echo $line | cut -d, -f2)
-		repo=$(echo $line | cut -d, -f3)
-		key=$(echo $line | cut -d, -f4)
-		echo "Adding $name repository..."
-		[ ! -z "$key" ] && wget -qO- $key | apt-key add -
-		apt-add-repository -y $repo && echo "[OK"] || echo "[ERROR]"
-	done
-
-	# update database packages list
-	echo -n "Downloading package information from all configured sources ..."
-	apt update && echo "[OK"] || echo "[ERROR]"
 }
 
 # Install packages
