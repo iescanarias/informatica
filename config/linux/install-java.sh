@@ -43,3 +43,14 @@ Comment=Eclipse for Java Developers
 NoDisplay=false
 Categories=Development;IDE;
 EOL
+
+# install object-aid uml explorer plugin
+$ECLIPSE_LINK/eclipse \
+    -nosplash \
+    -application org.eclipse.equinox.p2.director \
+    -repository http://www.objectaid.com/update/current \
+    -destination $ECLIPSE_LINK \
+    -installIU org.apache.batik.feature.group
+    -installIU com.objectaid.uml.cls.feature.group
+    -installIU com.objectaid.uml.addon.feature.group
+    -installIU com.objectaid.uml.seq.feature.group
