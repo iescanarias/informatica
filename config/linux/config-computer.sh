@@ -6,7 +6,7 @@ echo "Computer Science Department, IES Domingo Pérez Minik"
 echo "===================================================="
 
 # check if is running as root
-#[ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
+[ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
 
 IFS=$'\n'	
 
@@ -34,7 +34,7 @@ function addRepos() {
 	done
 
 	# update database packages list
-	echo -n "Downloading package information from all configured sources ..."
+	echo "Downloading package information from all configured sources ..."
 	apt update && echo "[OK"] || echo "[ERROR]"
 }
 
@@ -46,7 +46,7 @@ function installFromRepos() {
 	do
 		name=$(echo $line | cut -d, -f2)
 		package=$(echo $line | cut -d, -f3)
-		echo -n "Installing $name package from repo..."
+		echo "Installing $name package from repo..."
 		apt install -y $package && echo "[OK]" || echo "[ERROR]"
 	done
 }
@@ -56,8 +56,8 @@ function installDebFromUrl() {
 	name=$1
 	url=$2
 	deb=/tmp/$(basename $url)
-	echo -n "Installing $name package from DEB file..."
-	wget -qO $deb $url
+	echo "Installing $name package from DEB file..."
+	wget -O $deb $url
 	dpkg -i $deb && echo "[OK]" || echo "[ERROR]"
 }
 
@@ -82,14 +82,14 @@ function installFromBinaries() {
 		binary=/tmp/$(echo $line | cut -d, -f4)
 		url=$(echo $line | cut -d, -f5)
 		echo "Installing $name ..."
-		wget -qO $binary $url
+		wget -O $binary $url
 		chmod +x $binary
 		[ "$username" == root ] && $binary || /bin/su -c "$binary" - $username
 	done
 }
 
-# Install packages
-function installPackages() {
+# Install software
+function installSoftware() {
 	echo "Installing packages..."
 	installFromRepos
 	installDebsFromUrls
@@ -126,7 +126,7 @@ echo "Creating users..."
 createUser "alumno" "onmula" true
 
 # Packages installation
-installPackages
+installSoftware
 
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
