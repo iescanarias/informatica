@@ -3,20 +3,18 @@
 echo -e "\nScript de configuración automática de GNU/Linux\nDepartamento de Informática del IES Domingo Pérez Minik\n"
 
 # check if is running as root
-[ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
+#[ $(whoami) != root ] && echo "[ERROR] Please, run as root" && exit 1
 
 IFS=$'\n'	
 
 BASE_URL=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux
-PACKAGES_FILE_URL=$BASE_URL/packages.txt
-DEBS_FILE_URL=$BASE_URL/debs.txt
-KEYS_FILE_URL=$BASE_URL/keys.txt
-REPOS_FILE_URL=$BASE_URL/repos.txt
-BINARIES_FILE_URL=$BASE_URL/binaries.txt
+CONFIG_FILE_URL=$BASE_URL/install.conf
+CONFIG_FILE=/tmp/install.conf
 
 # download content from url
-function downloadContent() {
-	wget -qO- $1 | sed -r '/^\s*$/d'
+function getConfig() {
+	wget -qO $CONFIG_FILE $CONFIG_FILE_URL
+	#sed -i -r '/^\s*$/d' $CONFIG_FILE
 }
 
 # add apt key
@@ -177,17 +175,19 @@ function scheduleShutdown() {
 }
 
 # Upgrade system
-apt upgrade
+#apt upgrade
 
 # Create new users
 #echo "Creating users..."
 #createUser "alumno" "onmula" true
 
 # Packages installation
-installPackages
+#installPackages
 
 # Schedule a task to shutdown computer everyday at 3pm
-scheduleShutdown
+#scheduleShutdown
 
 # Take out the trash
-rm -fr /tmp/*
+#rm -fr /tmp/*
+
+getConfig
