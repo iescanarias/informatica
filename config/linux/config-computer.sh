@@ -118,15 +118,15 @@ function scheduleShutdown() {
 	echo "0 15 * * * root /sbin/shutdown -h now" > /etc/cron.d/shutdown
 }
 
-# Upgrade system
-apt upgrade
-
 # Create new users
 echo "Creating users..."
 createUser "alumno" "onmula" true
 
 # Packages installation
 installSoftware
+
+# Upgrade system
+apt upgrade
 
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
