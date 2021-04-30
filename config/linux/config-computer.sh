@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "===================================================="
-echo "Debian based Linux config script"
+echo "Debian based Linux configuration script"
 echo "Computer Science Department, IES Domingo Pérez Minik"
 echo "===================================================="
 

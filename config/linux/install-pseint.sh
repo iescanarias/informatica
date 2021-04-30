@@ -7,7 +7,7 @@ DOWNLOAD_URL=http://prdownloads.sourceforge.net/pseint/pseint-l64-20210408.tgz?d
 FILE=/tmp/$APP_NAME.tgz
 INSTALL_DIR=/opt
 
-wget -qO $FILE $DOWNLOAD_URL
+wget -O $FILE $DOWNLOAD_URL
 tar xvfz $FILE
 mv $APP_NAME $INSTALL_DIR
 

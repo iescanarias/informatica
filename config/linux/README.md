@@ -1,4 +1,4 @@
-﻿# Configuración de equipos con GNU/Linux (Ubuntu)
+﻿# Configuración de equipos con GNU/Linux basado en Debian
 
 Para configurar los equipos con Debian instalado ejecutamos un script que hace lo siguiente:
 

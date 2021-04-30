@@ -36,5 +36,4 @@ $ECLIPSE_INSTALL_DIR/eclipse \
     -repository http://download.eclipse.org/releases/$ECLIPSE_VERSION \
     -destination $ECLIPSE_INSTALL_DIR \
     -installIU org.apache.batik.feature.group \
-    -installIU com.objectaid.uml.cls.feature.group \
-    -profile SDKProfile
+    -installIU com.objectaid.uml.cls.feature.group
