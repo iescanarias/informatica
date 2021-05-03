@@ -15,8 +15,29 @@ CONFIG_FILE_URL=$BASE_URL/install.conf
 
 # Get config for type
 function getConfig() {
-	type=$1
-	wget -qO- $CONFIG_FILE_URL | sed -r '/^(\s*|#.*)$/d' | grep "^$type,"
+	category=$1
+	for line in $(wget -qO- $CONFIG_FILE_URL | sed -r '/^(\s*|#.*)$/d')
+	do
+		current=""
+		line=$(echo $line | sed 's/^ *//;s/ *$//')
+		case "$line" in
+			"[REPO]")
+				current="repo"
+				;;
+			"[PACKAGE]")
+				current="package"
+				;;
+			"[DEB]")
+				current="deb"
+				;;
+			"[INSTALLER]")
+				current="installer"
+				;;
+			*)
+				[ "$current" == "$category" ] && echo $line
+				;;
+		esac
+	done
 }
 
 # add apt repository
