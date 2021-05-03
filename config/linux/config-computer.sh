@@ -46,9 +46,9 @@ function addRepos() {
 	# add keys and repos
 	for line in $(getConfig repo)
 	do
-		name=$(echo $line | cut -d, -f2)
-		repo=$(echo $line | cut -d, -f3)
-		key=$(echo $line | cut -d, -f4)
+		name=$(echo $line | cut -d, -f1)
+		repo=$(echo $line | cut -d, -f2)
+		key=$(echo $line | cut -d, -f3)
 		echo "Adding $name repository..."
 		[ ! -z "$key" ] && wget -qO- $key | apt-key add -
 		apt-add-repository -y $repo && echo "[OK"] || echo "[ERROR]"
@@ -65,8 +65,8 @@ function installFromRepos() {
 	addRepos
 	for line in $(getConfig package)
 	do
-		name=$(echo $line | cut -d, -f2)
-		package=$(echo $line | cut -d, -f3)
+		name=$(echo $line | cut -d, -f1)
+		package=$(echo $line | cut -d, -f2)
 		echo "Installing $name package from repo..."
 		apt install -y $package && echo "[OK]" || echo "[ERROR]"
 	done
@@ -87,8 +87,8 @@ function installDebsFromUrls() {
 	echo "Installing DEB files from urls..."
 	for line in $(getConfig deb)
 	do
-		name=$(echo $line | cut -d, -f2)
-		url=$(echo $line | cut -d, -f3)
+		name=$(echo $line | cut -d, -f1)
+		url=$(echo $line | cut -d, -f2)
 		installDebFromUrl $name $url
 	done
 }
@@ -98,10 +98,10 @@ function installFromBinaries() {
 	echo "Installing software from binaries/scripts..."
 	for line in $(getConfig installer)
 	do
-		name=$(echo $line | cut -d, -f2)
-		user=$(echo $line | cut -d, -f3)
-		binary=/tmp/$(echo $line | cut -d, -f4)
-		url=$(echo $line | cut -d, -f5)
+		name=$(echo $line | cut -d, -f1)
+		user=$(echo $line | cut -d, -f2)
+		binary=/tmp/$(echo $line | cut -d, -f3)
+		url=$(echo $line | cut -d, -f4)
 		echo "Installing $name ..."
 		wget -O $binary $url
 		chmod +x $binary
