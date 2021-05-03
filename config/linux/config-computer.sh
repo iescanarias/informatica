@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "===================================================="
-echo "Debian based Linux configuration script"
+echo "Debian based Linux configuration script v20210503"
 echo "Computer Science Department, IES Domingo Pérez Minik"
 echo "===================================================="
 
@@ -16,9 +16,9 @@ CONFIG_FILE_URL=$BASE_URL/install.conf
 # Get config for type
 function getConfig() {
 	category=$1
+	current=""
 	for line in $(wget -qO- $CONFIG_FILE_URL | sed -r '/^(\s*|#.*)$/d')
 	do
-		current=""
 		line=$(echo $line | sed 's/^ *//;s/ *$//')
 		case "$line" in
 			"[REPO]")
