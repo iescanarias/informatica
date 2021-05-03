@@ -105,7 +105,7 @@ function installFromBinaries() {
 		echo "Installing $name ..."
 		wget -O $binary $url
 		chmod +x $binary
-		[ "$username" == root ] && $binary || /bin/su -c "$binary" - $username
+		[ "$user" == root ] && $binary || /bin/su -c "$binary" - $user
 	done
 }
 
