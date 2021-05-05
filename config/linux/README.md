@@ -1,6 +1,6 @@
 ﻿# Configuración de equipos con GNU/Linux basado en Debian
 
-Para configurar los equipos con Debian instalado ejecutamos un script que hace lo siguiente:
+Para configurar los equipos con sistema operativo Linux basado en Debian (Ubuntu, LinuxMint, ...) ejecutamos un script que hace lo siguiente:
 
 1. Actualiza el sistema completo.
 2. Crea el perfil de usuario **alumno** si no existe, con privilegios de administrador.
@@ -14,7 +14,7 @@ Para configurar los equipos con Debian instalado ejecutamos un script que hace l
 
 ## Requisitos
 
-* Distribución basada en Ubuntu
+* Distribución basada en Debian.
 
 ## Ejecución del script
 
