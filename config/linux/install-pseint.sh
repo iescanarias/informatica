@@ -8,7 +8,7 @@ FILE=/tmp/$APP_NAME.tgz
 INSTALL_DIR=/opt
 
 wget -O $FILE $DOWNLOAD_URL
-tar xvfz $FILE
+tar xfz $FILE
 mv $APP_NAME $INSTALL_DIR
 
 cat > /usr/share/applications/$APP_NAME.desktop <<EOL
