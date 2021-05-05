@@ -154,3 +154,9 @@ scheduleShutdown
 
 # Take out the trash
 rm -fr /tmp/*
+
+# Remove duplicated package repositories
+SOURCES_PATH=/etc/apt/sources.list.d
+rm $SOURCES_PATH/google-chrome.list
+rm $SOURCES_PATH/opera-stable.list
+rm $SOURCES_PATH/teamviewer.list
