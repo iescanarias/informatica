@@ -3,7 +3,7 @@
 echo "Installing PSeInt ..."
 
 APP_NAME=pseint
-DOWNLOAD_URL=http://prdownloads.sourceforge.net/pseint/pseint-l64-20210408.tgz?download
+DOWNLOAD_URL=http://prdownloads.sourceforge.net/pseint/pseint-l64-20210427.tgz?download
 FILE=/tmp/$APP_NAME.tgz
 INSTALL_DIR=/opt
 
@@ -13,13 +13,12 @@ mv /tmp/$APP_NAME $INSTALL_DIR
 
 cat > /usr/share/applications/$APP_NAME.desktop <<EOL
 [Desktop Entry]
-Version=20210408
+Encoding=UTF-8
 Name=PSeInt
-Comment=Herramienta para asistir a un estudiante en sus primeros pasos en programación
+Comment=Tool to learn programming
 Type=Application
-Exec=$INSTALL_DIR/$APP_NAME/pesint %U
+Exec=$INSTALL_DIR/$APP_NAME/wxPSeInt
 Icon=$INSTALL_DIR/$APP_NAME/imgs/logo.png
 Terminal=false
-NoDisplay=false
-Categories=Development;IDE;
+Categories=Development;
 EOL
