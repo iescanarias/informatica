@@ -157,6 +157,7 @@ SOURCES_PATH=/etc/apt/sources.list.d
 rm $SOURCES_PATH/google-chrome.list
 rm $SOURCES_PATH/opera-stable.list
 rm $SOURCES_PATH/teamviewer.list
+rm $SOURCES_PATH/vscode.list
 
 # Upgrade system
-apt upgrade
+apt upgrade -y
