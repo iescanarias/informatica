@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # install eclipse ide for java developers
 
 ECLIPSE_VERSION=2021-03
@@ -18,9 +18,10 @@ ln -s $JAVA_HOME $ECLIPSE_INSTALL_DIR/jre
 mkdir -p $HOME/.local/share/applications
 cat > $HOME/.local/share/applications/eclipse.desktop <<EOL
 [Desktop Entry]
-Name=Eclipse
+Version=2021-03
+Name=Eclipse IDE
 Type=Application
-Exec=$ECLIPSE_INSTALL_DIR/eclipse
+Exec=$ECLIPSE_INSTALL_DIR/eclipse %U
 Terminal=false
 Icon=$ECLIPSE_INSTALL_DIR/icon.xpm
 Comment=Eclipse for Java Developers

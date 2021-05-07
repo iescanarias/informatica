@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "===================================================="
 echo "Debian based Linux configuration script v20210503"
@@ -146,9 +146,6 @@ createUser "alumno" "onmula" true
 # Packages installation
 installSoftware
 
-# Upgrade system
-apt upgrade
-
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
 
@@ -160,3 +157,6 @@ SOURCES_PATH=/etc/apt/sources.list.d
 rm $SOURCES_PATH/google-chrome.list
 rm $SOURCES_PATH/opera-stable.list
 rm $SOURCES_PATH/teamviewer.list
+
+# Upgrade system
+apt upgrade

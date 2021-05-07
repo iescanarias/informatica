@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 JDK_VERSION=11.0.11.j9-adpt
 
