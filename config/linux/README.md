@@ -3,7 +3,7 @@
 Para configurar los equipos con sistema operativo Linux basado en Debian (Ubuntu, LinuxMint, ...) ejecutamos un script que hace lo siguiente:
 
 1. Crea el perfil de usuario **alumno** si no existe, con privilegios de administrador (sudoer).
-2. Añade nuevos repositorios al sistema.
+2. Añade nuevos repositorios de paquetes al sistema.
 3. Instala los paquetes indicados desde los repositorios configurados en el sistema.
 4. Descarga e instala los ficheros DEB.
 5. Descarga y ejecuta los instaladores de paquetes.
