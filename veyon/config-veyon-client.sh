@@ -4,6 +4,9 @@
 # Configure Veyon client service
 # ==============================
 
+# Install Veyon Master tool
+apt install -y veyon-service
+
 # Download and install master public key
 VEYON_PUBLIC_KEY=/tmp/public_key.pem
 wget -qO $VEYON_PUBLIC_KEY https://raw.githubusercontent.com/iesdpm/informatica/master/veyon/keys/informatica_public_key.pem
