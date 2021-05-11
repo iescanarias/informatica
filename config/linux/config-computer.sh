@@ -13,7 +13,7 @@ IFS=$'\n'
 BASE_URL=https://raw.githubusercontent.com/iesdpm/informatica/master/config/linux
 CONFIG_FILE_URL=$BASE_URL/install.conf
 
-# Get config for type
+# Get config for type (repo | package | deb | installer )
 function getConfig() {
 	category=$1
 	current=""
@@ -51,12 +51,12 @@ function addRepos() {
 		key=$(echo $line | cut -d, -f3)
 		echo "Adding $name repository..."
 		[ ! -z "$key" ] && wget -qO- $key | apt-key add -
-		apt-add-repository -y $repo && echo "[OK"] || echo "[ERROR]"
+		apt-add-repository -y $repo && echo "[OK]" || echo "[ERROR]"
 	done
 
 	# update database packages list
 	echo "Downloading package information from all configured sources ..."
-	apt update && echo "[OK"] || echo "[ERROR]"
+	apt update && echo "[OK]" || echo "[ERROR]"
 }
 
 # Install from repos
