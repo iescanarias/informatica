@@ -161,3 +161,6 @@ rm $SOURCES_PATH/vscode.list
 
 # Upgrade system
 apt upgrade -y
+
+# Clean packages cache
+apt clean
