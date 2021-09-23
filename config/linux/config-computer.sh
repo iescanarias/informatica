@@ -127,6 +127,7 @@ function createUser() {
 		echo "User $username already exists"
 	else
 		useradd -m -s /bin/bash $username
+		usermod -G vboxusers -a $username
 		echo $username:$password | chpasswd
 		[ "$admin" = "true" ] && adduser $username sudo
 		echo "User $username created!"
@@ -139,12 +140,12 @@ function scheduleShutdown() {
 	echo "0 15 * * * root /sbin/shutdown -h now" > /etc/cron.d/shutdown
 }
 
+# Packages installation
+installSoftware
+
 # Create new users
 echo "Creating users..."
 createUser "alumno" "onmula" true
-
-# Packages installation
-installSoftware
 
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
