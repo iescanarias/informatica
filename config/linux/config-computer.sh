@@ -127,8 +127,8 @@ function createUser() {
 		echo "User $username already exists"
 	else
 		useradd -m -s /bin/bash $username
-		usermod -G vboxusers -a $username
 		echo $username:$password | chpasswd
+		adduser $username vboxusers
 		[ "$admin" = "true" ] && adduser $username sudo
 		echo "User $username created!"
 	fi
