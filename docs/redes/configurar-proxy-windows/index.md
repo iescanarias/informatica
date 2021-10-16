@@ -6,15 +6,15 @@ A continuación se explican los pasos para configurar un [servidor proxy](https:
 
 1. Abrir "Opciones de Internet":
 
-   ![Opciones de Internet](images/configurar-proxy-windows/image01.png)
+   ![Opciones de Internet](image01.png)
 
 2. Seleccionar la pestaña "Conexiones" y pulsar el botón "Configuración de LAN":
 
-   ![Pestaña Conexiones](images/configurar-proxy-windows/image02.png)
+   ![Pestaña Conexiones](image02.png)
 
 3. Marcamos la casilla "Usar un servidor proxy para la LAN", introducimos la dirección y el puerto del proxy, y pulsamos "Aceptar".
 
-   ![Configuración de LAN](images/configurar-proxy-windows/image03.png)
+   ![Configuración de LAN](image03.png)
 
 
 Y listo. Con esto ya hemos configurado el servidor proxy para Windows.

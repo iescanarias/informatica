@@ -4,7 +4,7 @@ A continuación se explica el proceso para preparar un pendrive que permita crea
 
 1. Crear dos particiones en el pendrive de la siguiente forma. En este caso se ha usado el "Administrador de discos" de Windows, pero se puede hacer lo mismo con el GParted en GNU/Linux.
 
-   ![Administrador de discos](images/crear-pendrive-recuperacion/image1.png)
+   ![Administrador de discos](image1.png)
 
    La primera partición se debe formatear en NTFS y es donde se guardarán la(s) imagen(es). Debe ser NTFS para que quepan archivos de más de 4GB.
 
@@ -16,7 +16,7 @@ A continuación se explica el proceso para preparar un pendrive que permita crea
 
 2. Con la aplicación **[UNetBootin](https://unetbootin.github.io/)** (disponible tanto para Windows como para GNU/Linux), volcamos el contenido de la ISO de DRBL a la segunda partición (en este caso a la unidad con la letra G:)
 
-   ![UNetBootin](images/crear-pendrive-recuperacion/image2.png)
+   ![UNetBootin](image2.png)
 
    > **NOTA**: En este ejemplo se está usando la versión [2.3.1 de DRBL de 32 bits (i686)](https://sourceforge.net/projects/drbl/files/drbl_live_stable/OldFiles/2.3.1-6/drbl-live-xfce-2.3.1-6-i686-pae.iso/download), para que funcione también en equipos antiguos.
 

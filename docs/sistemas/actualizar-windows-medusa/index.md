@@ -4,13 +4,13 @@ Para poder actualizar los sistemas Windows desde la red del instituto es necesar
 
 A continuación se explica el proceso:
 
-1. [Configurar un servidor proxy](configurar-proxy-windows).
+1. [Configurar un servidor proxy](../../redes/configurar-proxy-windows).
 
 2. Abrimos "Windows Update".
 
    - Botón de Inicio > Configuración > Actualización y seguridad > Windows Update
 
-   ![Windows Update](images/actualizar-windows-medusa/image01.png)
+   ![Windows Update](image01.png)
 
 3. Pulsamos el botón "Buscar actualizaciones".
 

@@ -3,7 +3,7 @@ Resetear la alarma de tóner en la impresora Brother HL-2250-DN
 
 Si el LED de aviso de tóner bajo de la impresora se mantiene encendido aunque cambiemos el tóner, es necesario resetear la alarma de tóner bajo siguiendo los siguientes pasos:
 
-![](images/resetear-alarma-toner-impresora-brother-hl-2250-dn/image1.png)
+![](image1.png)
 
 1.  Apagar la impresora.
 
@@ -22,3 +22,4 @@ Si el LED de aviso de tóner bajo de la impresora se mantiene encendido aunque c
 8.  Cerramos la cubierta frontal.
 
 ¡Y listo! Ya podemos volver a usar la impresora.
+
