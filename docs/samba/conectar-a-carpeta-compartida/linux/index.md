@@ -4,7 +4,7 @@ Para poder conectar a una carpeta compartida mediante el protocolo SMB (protocol
 
 1. Abrimos el **Gestor de archivos** (similar al **Explorador de archivos** en Windows):
 
-![Gestor de archivos](image1.png)
+	![Gestor de archivos](image1.png)
 
 2. Abrimos la opción del menú **Ir a > Ubicación**:
 
