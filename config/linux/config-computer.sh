@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "===================================================="
-echo "Debian based Linux configuration script v20210503"
+echo "Debian based Linux configuration script v20211117"
 echo "Computer Science Department, IES Domingo Pérez Minik"
 echo "===================================================="
 
@@ -140,12 +140,32 @@ function scheduleShutdown() {
 	echo "0 15 * * * root /sbin/shutdown -h now" > /etc/cron.d/shutdown
 }
 
+# Config AnyDesk only for the current user (alumno)
+function configAnyDesk() {
+	echo "Configuring AnyDesk for user $1..."
+	user=$1
+
+	# Disable AnyDesk service
+	systemctl disable anydesk.service
+
+	# Config AnyDesk for alumno
+	userHome=$(getent passwd $user | cut -d: -f6)
+	autoStart=/home/$userHome/.config/autostart
+	mkdir $autoStart
+	cp /usr/share/applications/anydesk.desktop $autoStart
+	chown -R $user:$user $autoStart
+
+}
+
 # Packages installation
 installSoftware
 
 # Create new users
 echo "Creating users..."
 createUser "alumno" "onmula" true
+
+# Config AnyDesk
+configAnyDesk "alumno"
 
 # Schedule a task to shutdown computer everyday at 3pm
 scheduleShutdown
