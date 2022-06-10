@@ -5,18 +5,16 @@ Para configurar los equipos con Windows instalado ejecutamos un script que hace 
 1. Instala el software de la siguiente [lista](packages.txt).
 
 2. Configura el sistema para que almacene los perfiles de los usuarios en la segundad unidad (unidad D:)
-
+   
    > :warning: Sólo en caso de que se detecte una segunda unidad en el equipo.
 
-3. Crear los perfiles de los usuarios: `Profesor` (con privilegios administrativos) y `Alumno`.
+3. Crear los perfiles de los usuarios: `Alumno` (con privilegios administrativos).
 
-4. Configura los marcadores por defecto de los navegadores instalados en el sistema.
+4. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
 
-5. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
+5. Desinstala OneDrive.
 
-6. Desinstala OneDrive.
-
-7. Cambia el nombre del equipo a `INFORMATICA` y mete el equipo en el grupo de trabajo `MINIK`.
+6. Cambia el nombre del equipo a `INFORMATICA` y mete el equipo en el grupo de trabajo `MINIK`.
 
 ## Requisitos
 
