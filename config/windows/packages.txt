@@ -6,7 +6,8 @@ putty
 git
 github-desktop
 adoptopenjdk 
-eclipse
+eclipse-java-oxygen
+scenebuilder
 filezilla
 vscode
 atom
@@ -15,3 +16,12 @@ virtualbox
 vmware-workstation-player
 libreoffice-fresh
 bluej
+openssh
+vagrant
+anydesk
+veyon
+obs-studio
+dbeaver
+marktext.install
+master-pdf-editor
+openboard
