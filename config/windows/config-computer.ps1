@@ -37,6 +37,9 @@ If (Test-RunningAsAdministrator) {
     Write-Output "Setting timezone to GMT Standard Time"
     tzutil /s "GMT Standard Time"
 
+    # Disable Windows Update
+    Disable-WindowsUpdate
+
 } Else {
 
     Write-Host -ForegroundColor Red "Must be run as" (Get-AdminUsername)

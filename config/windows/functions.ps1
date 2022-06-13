@@ -175,7 +175,12 @@ Function Create-User($username, $password, $group) {
 
     } else {
 
-        New-LocalUser `            -Name $username `            -Password (ConvertTo-SecureString -Force -AsPlainText $password) `            -AccountNeverExpires `            -PasswordNeverExpires `            -UserMayNotChangePassword | Out-Null
+        New-LocalUser `
+            -Name $username `
+            -Password (ConvertTo-SecureString -Force -AsPlainText $password) `
+            -AccountNeverExpires `
+            -PasswordNeverExpires `
+            -UserMayNotChangePassword | Out-Null
 
         Add-LocalGroupMember -Group $group -Member $username
 
@@ -203,4 +208,38 @@ Function Schedule-Shutdown() {
         $trigger = New-ScheduledTaskTrigger -Daily -At "15:00:00"
         Register-ScheduledTask -Description "Power off computer everyday at 3pm" -TaskName $taskName -Action $action -Trigger $trigger
     }
+}
+
+# ----------------------------------
+# Windows Update related functions
+# ----------------------------------
+
+Function Disable-WindowsUpdate() {
+    Write-Output "Disabling Windows Update..."
+    
+    $windowsUpdatePath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+    $autoUpdatePath = $windowsUpdatePath + "\AU"
+    
+    if (Test-Path -Path $windowsUpdatePath) {
+        Remove-Item -Path $windowsUpdatePath -Recurse
+    }
+    
+    New-Item -Path $windowsUpdatePath -Force
+    New-Item -Path $autoUpdatePath -Force
+    Set-ItemProperty -Path $autoUpdatePath -Name NoAutoUpdate -Value 1
+
+    Get-ScheduledTask -TaskPath "\Microsoft\Windows\WindowsUpdate\" | Disable-ScheduledTask
+
+    $adminGroupName = Get-AdminGroupname
+    takeown /F $ "$env:SystemRoot\System32\Tasks\Microsoft\Windows\UpdateOrchestrator" /A /R
+    icacls "$env:SystemRoot\System32\Tasks\Microsoft\Windows\UpdateOrchestrator" /grant ${adminGroupName}:F /T
+    Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator\" | Disable-ScheduledTask
+
+    Stop-Service wuauserv
+    Set-Service wuauserv -StartupType Disabled
+
+    # Disable WindowsUpdate task folder again, since wuauserv could have enable it meanwhile
+    Get-ScheduledTask -TaskPath "\Microsoft\Windows\WindowsUpdate\" | Disable-ScheduledTask
+
+    Write-Host "Windows Update service disabled!"
 }

@@ -8,13 +8,17 @@ Para configurar los equipos con Windows instalado ejecutamos un script que hace 
    
    > :warning: Sólo en caso de que se detecte una segunda unidad en el equipo.
 
-3. Crear los perfiles de los usuarios: `Alumno` (con privilegios administrativos).
+3. Crear el perfil de usuario `Alumno` (con privilegios administrativos).
 
 4. Programa el apagado del sistema a las 15:00 todos los días (al terminar las clases).
 
 5. Desinstala OneDrive.
 
 6. Cambia el nombre del equipo a `INFORMATICA` y mete el equipo en el grupo de trabajo `MINIK`.
+
+7. Cambia la zona horaria a GMT-0 (Atlantic/Canary).
+
+8. Deshabilita Windows Update.
 
 ## Requisitos
 
