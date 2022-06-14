@@ -228,18 +228,8 @@ Function Disable-WindowsUpdate() {
     New-Item -Path $autoUpdatePath -Force
     Set-ItemProperty -Path $autoUpdatePath -Name NoAutoUpdate -Value 1
 
-    Get-ScheduledTask -TaskPath "\Microsoft\Windows\WindowsUpdate\" | Disable-ScheduledTask
-
-    $adminGroupName = Get-AdminGroupname
-    takeown /F $ "$env:SystemRoot\System32\Tasks\Microsoft\Windows\UpdateOrchestrator" /A /R
-    icacls "$env:SystemRoot\System32\Tasks\Microsoft\Windows\UpdateOrchestrator" /grant ${adminGroupName}:F /T
-    Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator\" | Disable-ScheduledTask
-
     Stop-Service wuauserv
     Set-Service wuauserv -StartupType Disabled
-
-    # Disable WindowsUpdate task folder again, since wuauserv could have enable it meanwhile
-    Get-ScheduledTask -TaskPath "\Microsoft\Windows\WindowsUpdate\" | Disable-ScheduledTask
 
     Write-Host "Windows Update service disabled!"
 }

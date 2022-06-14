@@ -25,3 +25,4 @@ dbeaver
 marktext.install
 master-pdf-editor
 openboard
+maven
