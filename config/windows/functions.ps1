@@ -243,7 +243,7 @@ Function Enable-WindowsUpdate() {
         Remove-Item -Path $windowsUpdatePath -Recurse
     }
 
-    Set-Service wuauserv -StartupType Enabled
+    Set-Service wuauserv -StartupType Automatic
     Start-Service wuauserv
 
     Write-Host "Windows Update service enabled!"
