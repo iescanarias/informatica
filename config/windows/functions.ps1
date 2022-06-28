@@ -233,3 +233,18 @@ Function Disable-WindowsUpdate() {
 
     Write-Host "Windows Update service disabled!"
 }
+
+Function Enable-WindowsUpdate() {
+    Write-Output "Enabling Windows Update..."
+    
+    $windowsUpdatePath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+    
+    if (Test-Path -Path $windowsUpdatePath) {
+        Remove-Item -Path $windowsUpdatePath -Recurse
+    }
+
+    Set-Service wuauserv -StartupType Enabled
+    Start-Service wuauserv
+
+    Write-Host "Windows Update service enabled!"
+}
