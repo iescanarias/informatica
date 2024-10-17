@@ -100,11 +100,11 @@ function Uninstall-OneDrive() {
 # Software installation related functions
 # ----------------------------------
 
-Function Get-PackagesList() {
-    return (((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/iesdpm/informatica/master/config/windows/packages.txt"))).Split("`n")
+Function Get-PackagesList($packagesUrl) {
+    return (((New-Object System.Net.WebClient).DownloadString($packagesUrl))).Split("`n")
 }
 
-Function Install-Packages() {
+Function Install-Packages($packagesUrl) {
 
     Write-Host "Installing packages ..."
 
@@ -114,7 +114,7 @@ Function Install-Packages() {
     }
 
     # Instalación de paquetes
-    Get-PackagesList | ForEach-Object { 
+    Get-PackagesList $packagesUrl | ForEach-Object { 
         Install-Package $_
     }
 
@@ -131,7 +131,7 @@ Function Find-SecondaryDrive() {
                 | Where-Object { $_.DriveLetter -ne $env:SystemDrive -and $_.SystemVolume -eq $false }
 
     foreach ($drive in $drives) {
-        If ($drive.DriveLetter -ne $null) {
+        If ($null -ne $drive.DriveLetter) {
             return $drive.DriveLetter.Trim()
         }
     }

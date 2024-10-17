@@ -14,7 +14,7 @@ Para configurar los equipos con Windows instalado ejecutamos un script que hace 
 
 5. Desinstala OneDrive.
 
-6. Cambia el nombre del equipo a `INFORMATICA` y mete el equipo en el grupo de trabajo `MINIK`.
+6. Cambia el nombre del equipo a `INFORMATICA` y mete el equipo en el grupo de trabajo `IESCANARIAS`.
 
 7. Cambia la zona horaria a GMT-0 (Atlantic/Canary).
 
@@ -32,11 +32,11 @@ Ejecutar el siguiente comando como `Administrador` desde:
 ### Símbolo del sistema (CMD):
 
 ```
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iesdpm/informatica/master/config/windows/config-computer.ps1'))"
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iescanarias/informatica/master/config/windows/config-computer.ps1'))"
 ```
 
 ### PowerShell (PS):
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iesdpm/informatica/master/config/windows/config-computer.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iescanarias/informatica/master/config/windows/config-computer.ps1'))
 ```

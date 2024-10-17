@@ -1,18 +1,18 @@
 ﻿Write-Host @"
 
 Script de configuración automática de Windows
-Departamento de Informática del IES Domingo Pérez Minik
+Departamento de Informática del IES Canarias
 
 "@
 
 # Load functions from library
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/iesdpm/informatica/master/config/windows/functions.ps1"))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/iescanarias/informatica/master/config/windows/functions.ps1"))
 
 # Check if is running as administrator
 If (Test-RunningAsAdministrator) {
 
-    # Packages installation
-    Install-Packages
+    # Packages installation from a list in URL
+    Install-Packages "https://raw.githubusercontent.com/iescanarias/informatica/master/config/windows/packages.txt"
 
     # Change user profiles location to a secondary disk drive if it's possible
     # https://www.nextofwindows.com/how-to-change-user-profile-default-location-in-windows-7
@@ -29,9 +29,9 @@ If (Test-RunningAsAdministrator) {
     Uninstall-OneDrive
 
     # Change computer name and workgroup
-    Write-Output "Changing computer name to INFORMATICA and workgroup to MINIK..."
+    Write-Output "Changing computer name to INFORMATICA and workgroup to IESCANARIAS..."
     Rename-Computer -NewName "INFORMATICA" -ErrorAction SilentlyContinue
-    Add-Computer -WorkgroupName "MINIK" -ErrorAction SilentlyContinue
+    Add-Computer -WorkgroupName "IESCANARIAS" -ErrorAction SilentlyContinue
 
     # Set timezone
     Write-Output "Setting timezone to GMT Standard Time"
