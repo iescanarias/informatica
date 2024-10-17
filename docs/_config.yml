@@ -1,8 +1,8 @@
 theme: jekyll-theme-slate
 locale: "es-ES"
 title: "Departamento de Informática"
-description: "IES Domingo Pérez Minik"
+description: "I.E.S. Canarias"
 show_downloads: false
 logo: "images/logo.png"
 author: 
-  name: "IES Domingo Pérez Minik"
+  name: "IES Canarias"
