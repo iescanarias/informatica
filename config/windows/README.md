@@ -1,7 +1,5 @@
 ﻿# Configuración de equipos con Windows
 
-Made with :love: by @fvarrui
-
 Para configurar los equipos con Windows instalado ejecutamos un script que hace lo siguiente:
 
 1. Instala el software de la siguiente [lista](packages.txt).
