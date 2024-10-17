@@ -75,12 +75,12 @@ Function Install-FromUrl($url) {
     Write-Output "Installing $filename from $url"
 
     # download file
-    Write-Output "Downloading $url"
+    Write-Output "Downloading installer from $url..."
     $file = "$env:TEMP\$filename"
     Invoke-WebRequest -Uri $url -OutFile $file
 
     # run installer
-    Write-Output "Running installer $file"
+    Write-Output "Running installer: $file..."
     Start-Process -FilePath $file -ArgumentList "/S" -Wait
 
 }

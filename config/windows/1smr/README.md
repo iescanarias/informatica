@@ -2,7 +2,7 @@
 
 Este script instala de forma automática las siguientes aplicaciones:
 - VirtualBox
-- Libvre Office
+- Libre Office
 - Packet Tracer
 
 ## Ejecución del script
