@@ -21,4 +21,4 @@ Ejecutar el siguiente comando como `Administrador` desde:
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iescanarias/informatica/master/config/windows/1smr/config-computer.ps1'))
 ```
 
-Made with :love: by @fvarrui
+Made with :heart: by [@fvarrui](https://github.com/fvarrui)
