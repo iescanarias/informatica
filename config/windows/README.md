@@ -1,5 +1,7 @@
 ﻿# Configuración de equipos con Windows
 
+Made with :love: by @fvarrui
+
 Para configurar los equipos con Windows instalado ejecutamos un script que hace lo siguiente:
 
 1. Instala el software de la siguiente [lista](packages.txt).
@@ -40,3 +42,4 @@ Ejecutar el siguiente comando como `Administrador` desde:
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/iescanarias/informatica/master/config/windows/config-computer.ps1'))
 ```
+
