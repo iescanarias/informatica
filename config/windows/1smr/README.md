@@ -4,6 +4,8 @@ Este script instala de forma automática las siguientes aplicaciones:
 - VirtualBox
 - Libre Office
 - Packet Tracer
+- AdoptOpenJDK JRE8
+- OpenSSH
 
 ## Ejecución del script
 
