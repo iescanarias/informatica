@@ -93,12 +93,12 @@ Function Install-FromUrl($url, $options) {
 If (Test-RunningAsAdministrator) {
     
     # Packages installation
-    #Install-Packages @( "virtualbox", "libreoffice-fresh", "adoptopenjdk8openj9jre", "openssh" )
+    Install-Packages @( "virtualbox", "libreoffice-fresh", "adoptopenjdk8openj9jre", "openssh" )
     Install-FromUrl "https://github.com/iescanarias/informatica/releases/download/2024.10.17/pt822.exe" @("/SILENT")
 
     # Shutdown computer after installations
     Write-Host "Shutting down computer ..."
-    #Stop-Computer -Force
+    Stop-Computer -Force
 
 } Else {
 
