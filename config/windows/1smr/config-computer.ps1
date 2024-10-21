@@ -68,7 +68,7 @@ Function Install-Packages($packages) {
 
 }
 
-Function Install-FromUrl($url) {
+Function Install-FromUrl($url, $options) {
 
     # get filename from url
     $filename = [System.IO.Path]::GetFileName($url)
@@ -81,7 +81,7 @@ Function Install-FromUrl($url) {
 
     # run installer
     Write-Output "Running installer: $file..."
-    Start-Process -FilePath $file -ArgumentList "/S" -Wait
+    Start-Process -FilePath $file -ArgumentList $options -Wait
 
 }
 
@@ -94,7 +94,7 @@ If (Test-RunningAsAdministrator) {
     
     # Packages installation
     Install-Packages @( "virtualbox", "libreoffice-fresh", "adoptopenjdk8openj9jre", "openssh" )
-    Install-FromUrl "https://github.com/iescanarias/informatica/releases/download/2024.10.17/pt822.exe"
+    Install-FromUrl "https://github.com/iescanarias/informatica/releases/download/2024.10.17/pt822.exe", @("/SILENT")
 
     # Shutdown computer after installations
     Write-Host "Shutting down computer ..."
