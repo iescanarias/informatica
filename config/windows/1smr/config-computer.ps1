@@ -34,7 +34,8 @@ function Test-ChocoInstalled() {
 # Install Chocolatey
 function Install-Choco() {
     Write-Host "Installing Chocolatey..."
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
+    Write-Host "Chocolatey installed."
 }
 
 # Install a package with Chocolatey
