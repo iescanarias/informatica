@@ -1,11 +1,11 @@
 ﻿# Instalación de software en los equipos de 1ºSMR (Windows)
 
 Este script instala de forma automática las siguientes aplicaciones:
-- VirtualBox
+- AdoptOpenJDK JRE 8 (runtime de Java)
 - Libre Office
-- Packet Tracer
-- AdoptOpenJDK JRE8
 - OpenSSH
+- Packet Tracer
+- VirtualBox
 
 ## Ejecución del script
 
