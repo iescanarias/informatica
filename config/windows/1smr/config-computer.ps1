@@ -99,7 +99,7 @@ If (Test-RunningAsAdministrator) {
 
     # Shutdown computer after installations
     Write-Host "Shutting down computer ..."
-    #Stop-Computer -Force
+    Stop-Computer -Force
 
 } Else {
 
